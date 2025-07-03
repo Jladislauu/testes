@@ -304,4 +304,33 @@ class Backend_api extends EA_Controller
     {
         redirect('business_settings/apply_global_working_plan');
     }
+
+    public function ajax_create_recurrence() {
+    $this->load->model('Recurrences_model');
+    $this->load->model('Appointments_model');
+
+    $data = [
+        'user_id' => $this->input->post('user_id'),
+        'service_id' => $this->input->post('service_id'),
+        'start_date' => $this->input->post('start_date'),
+        'end_date' => $this->input->post('end_date') ?: null,
+        'repeat_count' => $this->input->post('repeat_count') ?: null,
+        'frequency' => $this->input->post('frequency'),
+        'interval_value' => $this->input->post('interval_value') ?: 1,
+        'days_of_week' => $this->input->post('days_of_week') ?: null
+    ];
+
+    // Validação de conflitos
+    $this->check_conflicts($data);
+
+    $recurrence_id = $this->Recurrences_model->create_recurrence($data);
+    $this->Appointments_model->generate_recurrence_appointments($recurrence_id);
+
+    $this->output->set_content_type('application/json')->set_output(json_encode(['status' => 'success', 'recurrence_id' => $recurrence_id]));
+}
+
+private function check_conflicts($data) {
+    // Implementar lógica para verificar conflitos de horário
+    // Exemplo: Query em ea_appointments para checar sobreposições
+}
 }

@@ -164,6 +164,38 @@ class Appointments_model extends EA_Model
         }
     }
 
+    public function generate_recurrence_appointments($recurrence_id) {
+    $recurrence = $this->Recurrences_model->get_recurrence($recurrence_id);
+    if (!$recurrence) return false;
+
+    $rule = new \RRule\RRule([
+        'FREQ' => strtoupper($recurrence['frequency']),
+        'INTERVAL' => $recurrence['interval_value'],
+        'DTSTART' => new DateTime($recurrence['start_date']),
+        'UNTIL' => $recurrence['end_date'] ? new DateTime($recurrence['end_date']) : null,
+        'COUNT' => $recurrence['repeat_count'] ?: null,
+        'BYDAY' => $recurrence['days_of_week'] ? explode(',', $recurrence['days_of_week']) : null
+    ]);
+
+    $appointments = [];
+    foreach ($rule as $occurrence) {
+        $appointments[] = [
+            'recurrence_id' => $recurrence_id,
+            'user_id' => $recurrence['user_id'],
+            'service_id' => $recurrence['service_id'],
+            'start_datetime' => $occurrence->format('Y-m-d H:i:s'),
+            'end_datetime' => (clone $occurrence)->modify('+1 hour')->format('Y-m-d H:i:s'), // Ajuste a duração
+            'created_at' => date('Y-m-d H:i:s')
+        ];
+    }
+
+    if ($appointments) {
+        $this->db->insert_batch('ea_appointments', $appointments);
+    }
+}
+
+
+
     /**
      * Get all appointments that match the provided criteria.
      *

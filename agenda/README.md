@@ -4,7 +4,7 @@
         <img src="https://raw.githubusercontent.com/alextselegidis/easyappointments/develop/logo.png" alt="Easy!Appointments" width="150">
     </a>
     <br>
-    Easy!Appointments
+    Easy!Appointments testeeeee
     <br>
 </h1> 
 

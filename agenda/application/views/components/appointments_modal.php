@@ -158,31 +158,6 @@
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="recurrence_type"
-                                        class="form-label"><?= lang('recurrence_type') ?></label>
-                                    <select id="recurrence_type" name="recurrence_type" class="form-control">
-                                        <option value=""><?= lang('no_recurrence') ?></option>
-                                        <option value="daily"><?= lang('daily') ?></option>
-                                        <option value="weekly"><?= lang('weekly') ?></option>
-                                        <option value="monthly"><?= lang('monthly') ?></option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="recurrence_interval"
-                                        class="form-label"><?= lang('recurrence_interval') ?></label>
-                                    <input type="number" id="recurrence_interval" name="recurrence_interval"
-                                        class="form-control" min="1" value="1">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="recurrence_end_date"
-                                        class="form-label"><?= lang('recurrence_end_date') ?></label>
-                                    <input type="text" id="recurrence_end_date" name="recurrence_end_date"
-                                        class="form-control datetimepicker">
-                                </div>
-
-                                <div class="mb-3">
                                     <label class="form-label">
                                         <?= lang('timezone') ?>
                                     </label>
@@ -214,6 +189,32 @@
                                 </div>
 
                                 <?php slot('after_primary_appointment_fields'); ?>
+                                
+                                <div class="mb-3">
+                                    <label for="recurrence_type"
+                                        class="form-label"><?= lang('recurrence_type') ?></label>
+                                    <select id="recurrence_type" name="recurrence_type" class="form-control">
+                                        <option value=""><?= lang('no_recurrence') ?></option>
+                                        <option value="daily"><?= lang('daily') ?></option>
+                                        <option value="weekly"><?= lang('weekly') ?></option>
+                                        <option value="monthly"><?= lang('monthly') ?></option>
+                                    </select>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="recurrence_interval"
+                                        class="form-label"><?= lang('recurrence_interval') ?></label>
+                                    <input type="number" id="recurrence_interval" name="recurrence_interval"
+                                        class="form-control" min="1" value="1">
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="recurrence_end_date"
+                                        class="form-label"><?= lang('recurrence_end_date') ?></label>
+                                    <input type="text" id="recurrence_end_date" name="recurrence_end_date"
+                                        class="form-control datetimepicker">
+                                </div>
+                                
                             </div>
                         </div>
                     </fieldset>

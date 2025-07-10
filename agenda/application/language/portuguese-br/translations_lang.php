@@ -484,4 +484,12 @@ $lang['invalid_credentials_provided'] = 'Credenciais inválidas fornecidas, por 
 $lang['calendar_url'] = 'URL do Calendário';
 $lang['please_select'] = 'Por Favor, Selecione';
 $lang['secret_header'] = 'Secret Header';
+$lang['recurrence_type'] = 'Recorrência';
+$lang['no_recurrence'] = 'Sem recorrência';
+$lang['daily'] = 'Diária';
+$lang['weekly'] = 'Semanal';
+$lang['monthly'] = 'Mensal';
+$lang['recurrence_interval'] = 'Intervalo (ex.: a cada X dias/semanas/meses)';
+$lang['recurrence_end_date'] = 'Data Final da Recorrência';
+$lang['recurrence_fields_required'] = 'Os campos de intervalo e data final são obrigatórios para agendamentos recorrentes';
 // End

@@ -121,6 +121,53 @@
     'require_notes' => vars('require_notes'),
 ]); ?>
 
+<form id="appointment-form" class="mt-4">
+    <div class="form-group">
+        <label for="customer-id"><?= lang('customer') ?></label>
+        <select class="form-control" id="customer-id" name="id_users_customer">
+            <!-- Preenchido via JS -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="service-id"><?= lang('service') ?></label>
+        <select class="form-control" id="service-id" name="id_services">
+            <!-- Preenchido via JS -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="provider-id"><?= lang('provider') ?></label>
+        <select class="form-control" id="provider-id" name="id_users_provider">
+            <!-- Preenchido via JS -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="start-datetime"><?= lang('start') ?></label>
+        <input type="text" class="form-control datetimepicker" id="start-datetime" name="start_datetime">
+    </div>
+    <div class="form-group">
+        <label for="end-datetime"><?= lang('end') ?></label>
+        <input type="text" class="form-control datetimepicker" id="end-datetime" name="end_datetime">
+    </div>
+    <div class="form-group">
+        <label for="recurrence_type"><?= lang('recurrence_type') ?></label>
+        <select class="form-control" id="recurrence_type" name="recurrence_type">
+            <option value=""><?= lang('no_recurrence') ?></option>
+            <option value="daily"><?= lang('daily') ?></option>
+            <option value="weekly"><?= lang('weekly') ?></option>
+            <option value="monthly"><?= lang('monthly') ?></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="recurrence_interval"><?= lang('recurrence_interval') ?></label>
+        <input type="number" class="form-control" id="recurrence_interval" name="recurrence_interval" min="1" value="1">
+    </div>
+    <div class="form-group">
+        <label for="recurrence_end_date"><?= lang('recurrence_end_date') ?></label>
+        <input type="text" class="form-control datepicker" id="recurrence_end_date" name="recurrence_end_date">
+    </div>
+    <button type="submit" class="btn btn-primary"><?= lang('save') ?></button>
+</form>
+
 <?php component('unavailabilities_modal', [
     'timezones' => vars('timezones'),
     'timezone' => vars('timezone'),

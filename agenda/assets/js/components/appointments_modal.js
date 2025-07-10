@@ -82,7 +82,6 @@ App.Components.AppointmentsModal = (function () {
          * Stores the appointment changes or inserts a new appointment depending on the dialog mode.
          */
         $saveAppointment.on('click', () => {
-            // Before doing anything the appointment data need to be validated.
             if (!App.Components.AppointmentsModal.validateAppointmentForm()) {
                 return;
             }
@@ -141,25 +140,30 @@ App.Components.AppointmentsModal = (function () {
                 appointment.id_users_customer = customer.id;
             }
 
-            // Define success callback.
-            const successCallback = (response) => {
-                // Display success message to the user.
-                App.Layouts.Backend.displayNotification(response.message || lang('appointment_saved'));
+            // Adicionar logs no console
+            console.log('Dados do agendamento a serem enviados:', appointment);
+            console.log('Dados do cliente:', customer);
+            console.log('Recorrência:', {
+                type: appointment.recurrence_type,
+                interval: appointment.recurrence_interval,
+                end_date: appointment.recurrence_end_date
+            });
 
-                // Close the modal dialog and refresh the calendar appointments.
+            const successCallback = (response) => {
+                console.log('Resposta do servidor:', response);
+                App.Layouts.Backend.displayNotification(response.message || lang('appointment_saved'));
                 $appointmentsModal.find('.alert').addClass('d-none');
                 $appointmentsModal.modal('hide');
                 $reloadAppointments.trigger('click');
             };
 
-            // Define error callback.
             const errorCallback = (xhr) => {
+                console.error('Erro na requisição:', xhr.responseText, xhr.status, xhr);
                 $appointmentsModal.find('.modal-message').text(xhr.responseText || lang('service_communication_error'));
                 $appointmentsModal.find('.modal-message').addClass('alert-danger').removeClass('d-none');
                 $appointmentsModal.find('.modal-body').scrollTop(0);
             };
 
-            // Save appointment data to custom endpoint.
             $.ajax({
                 url: 'https://lightcyan-starling-554443.hostingersite.com/agenda/index.php/appointments/save_appointment',
                 type: 'POST',
@@ -169,7 +173,6 @@ App.Components.AppointmentsModal = (function () {
                 error: errorCallback
             });
         });
-
         /**
          * Event: Insert Appointment Button "Click"
          *
@@ -456,65 +459,65 @@ App.Components.AppointmentsModal = (function () {
      * any modification might be necessary in order to bring the dialog to the desired state.
      */
     function resetModal() {
-    $appointmentsModal.find('input, textarea').val('');
-    $appointmentsModal.find('.modal-message').addClass('d-none');
+        $appointmentsModal.find('input, textarea').val('');
+        $appointmentsModal.find('.modal-message').addClass('d-none');
 
-    const defaultStatusValue = $appointmentStatus.find('option:first').val();
-    $appointmentStatus.val(defaultStatusValue);
+        const defaultStatusValue = $appointmentStatus.find('option:first').val();
+        $appointmentStatus.val(defaultStatusValue);
 
-    $language.val(vars('default_language'));
-    $timezone.val(vars('default_timezone'));
+        $language.val(vars('default_language'));
+        $timezone.val(vars('default_timezone'));
 
-    $appointmentColor.find('.color-selection-option:first').trigger('click');
+        $appointmentColor.find('.color-selection-option:first').trigger('click');
 
-    $selectService.val($selectService.eq(0).attr('value'));
+        $selectService.val($selectService.eq(0).attr('value'));
 
-    $selectProvider.empty();
-    vars('available_providers').forEach((provider) => {
-        const serviceId = $selectService.val();
-        const canProvideService = provider.services.filter(
-            (providerServiceId) => Number(providerServiceId) === Number(serviceId)
-        ).length > 0;
-
-        if (canProvideService) {
-            $selectProvider.append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
-        }
-    });
-
-    $existingCustomersList.slideUp('slow');
-    $filterExistingCustomers.fadeOut('slow');
-    $selectCustomer.find('span').text(lang('select'));
-
-    const serviceId = $selectService.val();
-    const service = vars('available_services').find(
-        (availableService) => Number(availableService.id) === Number(serviceId)
-    );
-
-    const duration = service ? service.duration : 60;
-    const startDatetime = new Date();
-    const endDatetime = moment().add(duration, 'minutes').toDate();
-
-    App.Utils.UI.initializeDateTimePicker($startDatetime, {
-        onClose: () => {
+        $selectProvider.empty();
+        vars('available_providers').forEach((provider) => {
             const serviceId = $selectService.val();
-            const service = vars('available_services').find(
-                (availableService) => Number(availableService.id) === Number(serviceId),
-            );
+            const canProvideService = provider.services.filter(
+                (providerServiceId) => Number(providerServiceId) === Number(serviceId)
+            ).length > 0;
 
-            const startDateTimeObject = App.Utils.UI.getDateTimePickerValue($startDatetime);
-            const endDateTimeObject = new Date(startDateTimeObject.getTime() + service.duration * 60000);
-            App.Utils.UI.setDateTimePickerValue($endDatetime, endDateTimeObject);
-        },
-    });
+            if (canProvideService) {
+                $selectProvider.append(new Option(provider.first_name + ' ' + provider.last_name, provider.id));
+            }
+        });
 
-    App.Utils.UI.initializeDateTimePicker($endDatetime);
-    App.Utils.UI.initializeDateTimePicker($recurrenceEndDate, {
-        dateFormat: 'yy-mm-dd'
-    });
+        $existingCustomersList.slideUp('slow');
+        $filterExistingCustomers.fadeOut('slow');
+        $selectCustomer.find('span').text(lang('select'));
 
-    App.Utils.UI.setDateTimePickerValue($startDatetime, startDatetime);
-    App.Utils.UI.setDateTimePickerValue($endDatetime, endDatetime);
-}
+        const serviceId = $selectService.val();
+        const service = vars('available_services').find(
+            (availableService) => Number(availableService.id) === Number(serviceId)
+        );
+
+        const duration = service ? service.duration : 60;
+        const startDatetime = new Date();
+        const endDatetime = moment().add(duration, 'minutes').toDate();
+
+        App.Utils.UI.initializeDateTimePicker($startDatetime, {
+            onClose: () => {
+                const serviceId = $selectService.val();
+                const service = vars('available_services').find(
+                    (availableService) => Number(availableService.id) === Number(serviceId),
+                );
+
+                const startDateTimeObject = App.Utils.UI.getDateTimePickerValue($startDatetime);
+                const endDateTimeObject = new Date(startDateTimeObject.getTime() + service.duration * 60000);
+                App.Utils.UI.setDateTimePickerValue($endDatetime, endDateTimeObject);
+            },
+        });
+
+        App.Utils.UI.initializeDateTimePicker($endDatetime);
+        App.Utils.UI.initializeDateTimePicker($recurrenceEndDate, {
+            dateFormat: 'yy-mm-dd'
+        });
+
+        App.Utils.UI.setDateTimePickerValue($startDatetime, startDatetime);
+        App.Utils.UI.setDateTimePickerValue($endDatetime, endDatetime);
+    }
 
     /**
      * Validate the manage appointment dialog data.
@@ -524,54 +527,54 @@ App.Components.AppointmentsModal = (function () {
      * @return {Boolean} Returns the validation result.
      */
     function validateAppointmentForm() {
-    $appointmentsModal.find('.is-invalid').removeClass('is-invalid');
-    $appointmentsModal.find('.modal-message').addClass('d-none');
+        $appointmentsModal.find('.is-invalid').removeClass('is-invalid');
+        $appointmentsModal.find('.modal-message').addClass('d-none');
 
-    try {
-        let missingRequiredField = false;
+        try {
+            let missingRequiredField = false;
 
-        $appointmentsModal.find('.required').each((index, requiredField) => {
-            if ($(requiredField).val() === '' || $(requiredField).val() === null) {
-                $(requiredField).addClass('is-invalid');
-                missingRequiredField = true;
+            $appointmentsModal.find('.required').each((index, requiredField) => {
+                if ($(requiredField).val() === '' || $(requiredField).val() === null) {
+                    $(requiredField).addClass('is-invalid');
+                    missingRequiredField = true;
+                }
+            });
+
+            if (missingRequiredField) {
+                throw new Error(lang('fields_are_required'));
             }
-        });
 
-        if (missingRequiredField) {
-            throw new Error(lang('fields_are_required'));
+            if (
+                $email.val() &&
+                !App.Utils.Validation.email($email.val())
+            ) {
+                $email.addClass('is-invalid');
+                throw new Error(lang('invalid_email'));
+            }
+
+            const startDateTimeObject = App.Utils.UI.getDateTimePickerValue($startDatetime);
+            const endDateTimeObject = App.Utils.UI.getDateTimePickerValue($endDatetime);
+
+            if (startDateTimeObject > endDateTimeObject) {
+                $startDatetime.addClass('is-invalid');
+                $endDatetime.addClass('is-invalid');
+                throw new Error(lang('start_date_before_end_error'));
+            }
+
+            // Validação adicional para campos de recorrência
+            if ($recurrenceType.val() && (!$recurrenceInterval.val() || !$recurrenceEndDate.val())) {
+                $recurrenceInterval.addClass('is-invalid');
+                $recurrenceEndDate.addClass('is-invalid');
+                throw new Error(lang('recurrence_fields_required'));
+            }
+
+            return true;
+        } catch (error) {
+            $appointmentsModal
+                .find('.modal-message')
+                .addClass('alert-danger')
+                .text(error.message)
+                .removeClass('d-none');
+            return false;
         }
-
-        if (
-            $email.val() &&
-            !App.Utils.Validation.email($email.val())
-        ) {
-            $email.addClass('is-invalid');
-            throw new Error(lang('invalid_email'));
-        }
-
-        const startDateTimeObject = App.Utils.UI.getDateTimePickerValue($startDatetime);
-        const endDateTimeObject = App.Utils.UI.getDateTimePickerValue($endDatetime);
-
-        if (startDateTimeObject > endDateTimeObject) {
-            $startDatetime.addClass('is-invalid');
-            $endDatetime.addClass('is-invalid');
-            throw new Error(lang('start_date_before_end_error'));
-        }
-
-        // Validação adicional para campos de recorrência
-        if ($recurrenceType.val() && (!$recurrenceInterval.val() || !$recurrenceEndDate.val())) {
-            $recurrenceInterval.addClass('is-invalid');
-            $recurrenceEndDate.addClass('is-invalid');
-            throw new Error(lang('recurrence_fields_required'));
-        }
-
-        return true;
-    } catch (error) {
-        $appointmentsModal
-            .find('.modal-message')
-            .addClass('alert-danger')
-            .text(error.message)
-            .removeClass('d-none');
-        return false;
     }
-}

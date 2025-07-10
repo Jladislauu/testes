@@ -200,6 +200,16 @@ class Appointments extends EA_Controller
 
 public function save_appointment(): void {
         try {
+        log_message('debug', 'Iniciando save_appointment');
+        log_message('debug', 'Usuário atual: ' . json_encode($this->session->userdata()));
+        if (cannot('add', PRIV_APPOINTMENTS)) {
+            log_message('error', 'Permissão negada para add em PRIV_APPOINTMENTS');
+            abort(403, 'Forbidden');
+        }
+        $data = json_decode(request('appointment'), true);
+        log_message('debug', 'Dados recebidos: ' . json_encode($data));
+
+        try {
             if (cannot('add', PRIV_APPOINTMENTS)) {
                 abort(403, 'Forbidden');
             }

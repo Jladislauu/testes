@@ -78,8 +78,8 @@
                                             foreach ($grouped_services as $key => $group) {
                                                 $group_label =
                                                     $key !== 'uncategorized'
-                                                    ? e($group[0]['category_name'])
-                                                    : 'Uncategorized';
+                                                        ? e($group[0]['category_name'])
+                                                        : 'Uncategorized';
 
                                                 if (count($group) > 0) {
                                                     echo '<optgroup label="' . $group_label . '">';
@@ -109,7 +109,7 @@
                                 </div>
 
                                 <?php slot('after_select_appointment_service'); ?>
-
+                              
                                 <div class="mb-3">
                                     <label for="select-provider" class="form-label">
                                         <?= lang('provider') ?>
@@ -148,7 +148,7 @@
                             <div class="col-12 col-sm-6">
                                 <div class="mb-3">
                                     <label for="start-datetime"
-                                        class="form-label"><?= lang('start_date_time') ?></label>
+                                           class="form-label"><?= lang('start_date_time') ?></label>
                                     <input id="start-datetime" class="required form-control">
                                 </div>
 
@@ -189,32 +189,6 @@
                                 </div>
 
                                 <?php slot('after_primary_appointment_fields'); ?>
-                                
-                                <div class="mb-3">
-                                    <label for="recurrence_type"
-                                        class="form-label"><?= lang('recurrence_type') ?></label>
-                                    <select id="recurrence_type" name="recurrence_type" class="form-control">
-                                        <option value=""><?= lang('no_recurrence') ?></option>
-                                        <option value="daily"><?= lang('daily') ?></option>
-                                        <option value="weekly"><?= lang('weekly') ?></option>
-                                        <option value="monthly"><?= lang('monthly') ?></option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="recurrence_interval"
-                                        class="form-label"><?= lang('recurrence_interval') ?></label>
-                                    <input type="number" id="recurrence_interval" name="recurrence_interval"
-                                        class="form-control" min="1" value="1">
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="recurrence_end_date"
-                                        class="form-label"><?= lang('recurrence_end_date') ?></label>
-                                    <input type="text" id="recurrence_end_date" name="recurrence_end_date"
-                                        class="form-control datetimepicker">
-                                </div>
-                                
                             </div>
                         </div>
                     </fieldset>
@@ -227,20 +201,21 @@
                         <h5 class="text-black-50 mb-3 fw-light">
                             <?= lang('customer_details_title') ?>
                             <button id="new-customer" class="btn btn-outline-secondary btn-sm" type="button"
-                                data-tippy-content="<?= lang('clear_fields_add_existing_customer_hint') ?>">
+                                    data-tippy-content="<?= lang('clear_fields_add_existing_customer_hint') ?>">
                                 <i class="fas fa-plus-square me-2"></i>
                                 <?= lang('new') ?>
                             </button>
                             <button id="select-customer" class="btn btn-outline-secondary btn-sm" type="button"
-                                data-tippy-content="<?= lang('pick_existing_customer_hint') ?>">
+                                    data-tippy-content="<?= lang('pick_existing_customer_hint') ?>">
                                 <i class="fas fa-hand-pointer me-2"></i>
                                 <span>
                                     <?= lang('select') ?>
                                 </span>
                             </button>
 
-                            <input id="filter-existing-customers" placeholder="<?= lang('type_to_filter_customers') ?>"
-                                style="display: none;" class="input-sm form-control">
+                            <input id="filter-existing-customers"
+                                   placeholder="<?= lang('type_to_filter_customers') ?>"
+                                   style="display: none;" class="input-sm form-control">
                         </h5>
 
                         <div id="existing-customers-list" style="display: none;"></div>
@@ -257,8 +232,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="first-name"
-                                        class="<?= $require_first_name ? 'required' : '' ?> form-control"
-                                        maxlength="100" />
+                                           class="<?= $require_first_name ? 'required' : '' ?> form-control"
+                                           maxlength="100"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -269,8 +244,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="last-name"
-                                        class="<?= $require_last_name ? 'required' : '' ?> form-control"
-                                        maxlength="120" />
+                                           class="<?= $require_last_name ? 'required' : '' ?> form-control"
+                                           maxlength="120"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -281,7 +256,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="email"
-                                        class="<?= $require_email ? 'required' : '' ?> form-control" maxlength="120" />
+                                           class="<?= $require_email ? 'required' : '' ?> form-control"
+                                           maxlength="120"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -292,7 +268,7 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="phone-number" maxlength="60"
-                                        class="<?= $require_phone_number ? 'required' : '' ?> form-control" />
+                                           class="<?= $require_phone_number ? 'required' : '' ?> form-control"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -322,8 +298,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="address"
-                                        class="<?= $require_address ? 'required' : '' ?> form-control"
-                                        maxlength="120" />
+                                           class="<?= $require_address ? 'required' : '' ?> form-control"
+                                           maxlength="120"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -334,7 +310,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="city"
-                                        class="<?= $require_city ? 'required' : '' ?> form-control" maxlength="120" />
+                                           class="<?= $require_city ? 'required' : '' ?> form-control"
+                                           maxlength="120"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -345,8 +322,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="zip-code"
-                                        class="<?= $require_zip_code ? 'required' : '' ?> form-control"
-                                        maxlength="120" />
+                                           class="<?= $require_zip_code ? 'required' : '' ?> form-control"
+                                           maxlength="120"/>
                                 </div>
 
                                 <div class="mb-3">
@@ -368,7 +345,7 @@
                                         <?php endif; ?>
                                     </label>
                                     <textarea id="customer-notes" rows="2"
-                                        class="<?= $require_notes ? 'required' : '' ?> form-control"></textarea>
+                                              class="<?= $require_notes ? 'required' : '' ?> form-control"></textarea>
                                 </div>
 
                                 <?php slot('after_primary_customer_fields'); ?>
@@ -382,7 +359,7 @@
 
             <div class="modal-footer">
                 <?php slot('before_appointment_actions'); ?>
-
+                
                 <button class="btn btn-secondary" data-bs-dismiss="modal">
                     <?= lang('cancel') ?>
                 </button>

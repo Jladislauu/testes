@@ -31,17 +31,17 @@ class Config
     // ------------------------------------------------------------------------
 
     const BASE_URL = 'http://localhost';
-    const LANGUAGE = 'english';
-    const DEBUG_MODE = false;
+    const LANGUAGE = 'portuguese-br';
+    const DEBUG_MODE = true;
 
     // ------------------------------------------------------------------------
     // DATABASE SETTINGS
     // ------------------------------------------------------------------------
 
-    const DB_HOST = 'mysql';
-    const DB_NAME = 'easyappointments';
-    const DB_USERNAME = 'user';
-    const DB_PASSWORD = 'password';
+    const DB_HOST = 'localhost';
+    const DB_NAME = 'u292296724_teste';
+    const DB_USERNAME = 'u292296724_teste';
+    const DB_PASSWORD = '$ivr8XddwS9_+;E';
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC

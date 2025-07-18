@@ -78,8 +78,8 @@
                                             foreach ($grouped_services as $key => $group) {
                                                 $group_label =
                                                     $key !== 'uncategorized'
-                                                        ? e($group[0]['category_name'])
-                                                        : 'Uncategorized';
+                                                    ? e($group[0]['category_name'])
+                                                    : 'Uncategorized';
 
                                                 if (count($group) > 0) {
                                                     echo '<optgroup label="' . $group_label . '">';
@@ -109,7 +109,7 @@
                                 </div>
 
                                 <?php slot('after_select_appointment_service'); ?>
-                              
+
                                 <div class="mb-3">
                                     <label for="select-provider" class="form-label">
                                         <?= lang('provider') ?>
@@ -148,7 +148,7 @@
                             <div class="col-12 col-sm-6">
                                 <div class="mb-3">
                                     <label for="start-datetime"
-                                           class="form-label"><?= lang('start_date_time') ?></label>
+                                        class="form-label"><?= lang('start_date_time') ?></label>
                                     <input id="start-datetime" class="required form-control">
                                 </div>
 
@@ -184,6 +184,50 @@
                                 </div>
 
                                 <div class="mb-3">
+                                    <label><input type="checkbox" id="is_recurring" name="is_recurring">
+                                        <?= lang('make_recurring') ?></label>
+                                </div>
+                                <div id="recurrence-options" style="display: none;">
+                                    <div class="mb-3">
+                                        <label for="recurrence_frequency" class="form-label"><?= lang('frequency') ?>
+                                            <span class="text-danger">*</span></label>
+                                        <select id="recurrence_frequency" class="form-control"
+                                            name="recurrence_frequency">
+                                            <option value="daily"><?= lang('daily') ?></option>
+                                            <option value="weekly"><?= lang('weekly') ?></option>
+                                            <option value="monthly"><?= lang('monthly') ?></option>
+                                            <option value="yearly"><?= lang('yearly') ?></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="recurrence_interval" class="form-label"><?= lang('every') ?> <span
+                                                class="text-danger">*</span></label>
+                                        <input type="number" id="recurrence_interval" class="form-control"
+                                            name="recurrence_interval" value="1" min="1">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label><?= lang('ends') ?> <span class="text-danger">*</span></label>
+                                        <div>
+                                            <input type="radio" name="recurrence_end_type" value="count" checked>
+                                            <label for="recurrence_end_count"><?= lang('after') ?>
+                                                <input type="number" id="recurrence_end_count"
+                                                    class="form-control d-inline-block w-auto"
+                                                    name="recurrence_end_count" value="1" min="1">
+                                                <?= lang('occurrences') ?>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input type="radio" name="recurrence_end_type" value="date">
+                                            <label for="recurrence_end_date"><?= lang('on') ?>
+                                                <input type="date" id="recurrence_end_date"
+                                                    class="form-control d-inline-block w-auto"
+                                                    name="recurrence_end_date">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
                                     <label for="appointment-notes" class="form-label"><?= lang('notes') ?></label>
                                     <textarea id="appointment-notes" class="form-control" rows="3"></textarea>
                                 </div>
@@ -201,21 +245,20 @@
                         <h5 class="text-black-50 mb-3 fw-light">
                             <?= lang('customer_details_title') ?>
                             <button id="new-customer" class="btn btn-outline-secondary btn-sm" type="button"
-                                    data-tippy-content="<?= lang('clear_fields_add_existing_customer_hint') ?>">
+                                data-tippy-content="<?= lang('clear_fields_add_existing_customer_hint') ?>">
                                 <i class="fas fa-plus-square me-2"></i>
                                 <?= lang('new') ?>
                             </button>
                             <button id="select-customer" class="btn btn-outline-secondary btn-sm" type="button"
-                                    data-tippy-content="<?= lang('pick_existing_customer_hint') ?>">
+                                data-tippy-content="<?= lang('pick_existing_customer_hint') ?>">
                                 <i class="fas fa-hand-pointer me-2"></i>
                                 <span>
                                     <?= lang('select') ?>
                                 </span>
                             </button>
 
-                            <input id="filter-existing-customers"
-                                   placeholder="<?= lang('type_to_filter_customers') ?>"
-                                   style="display: none;" class="input-sm form-control">
+                            <input id="filter-existing-customers" placeholder="<?= lang('type_to_filter_customers') ?>"
+                                style="display: none;" class="input-sm form-control">
                         </h5>
 
                         <div id="existing-customers-list" style="display: none;"></div>
@@ -232,8 +275,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="first-name"
-                                           class="<?= $require_first_name ? 'required' : '' ?> form-control"
-                                           maxlength="100"/>
+                                        class="<?= $require_first_name ? 'required' : '' ?> form-control"
+                                        maxlength="100" />
                                 </div>
 
                                 <div class="mb-3">
@@ -244,8 +287,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="last-name"
-                                           class="<?= $require_last_name ? 'required' : '' ?> form-control"
-                                           maxlength="120"/>
+                                        class="<?= $require_last_name ? 'required' : '' ?> form-control"
+                                        maxlength="120" />
                                 </div>
 
                                 <div class="mb-3">
@@ -256,8 +299,7 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="email"
-                                           class="<?= $require_email ? 'required' : '' ?> form-control"
-                                           maxlength="120"/>
+                                        class="<?= $require_email ? 'required' : '' ?> form-control" maxlength="120" />
                                 </div>
 
                                 <div class="mb-3">
@@ -268,7 +310,7 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="phone-number" maxlength="60"
-                                           class="<?= $require_phone_number ? 'required' : '' ?> form-control"/>
+                                        class="<?= $require_phone_number ? 'required' : '' ?> form-control" />
                                 </div>
 
                                 <div class="mb-3">
@@ -298,8 +340,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="address"
-                                           class="<?= $require_address ? 'required' : '' ?> form-control"
-                                           maxlength="120"/>
+                                        class="<?= $require_address ? 'required' : '' ?> form-control"
+                                        maxlength="120" />
                                 </div>
 
                                 <div class="mb-3">
@@ -310,8 +352,7 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="city"
-                                           class="<?= $require_city ? 'required' : '' ?> form-control"
-                                           maxlength="120"/>
+                                        class="<?= $require_city ? 'required' : '' ?> form-control" maxlength="120" />
                                 </div>
 
                                 <div class="mb-3">
@@ -322,8 +363,8 @@
                                         <?php endif; ?>
                                     </label>
                                     <input type="text" id="zip-code"
-                                           class="<?= $require_zip_code ? 'required' : '' ?> form-control"
-                                           maxlength="120"/>
+                                        class="<?= $require_zip_code ? 'required' : '' ?> form-control"
+                                        maxlength="120" />
                                 </div>
 
                                 <div class="mb-3">
@@ -345,7 +386,7 @@
                                         <?php endif; ?>
                                     </label>
                                     <textarea id="customer-notes" rows="2"
-                                              class="<?= $require_notes ? 'required' : '' ?> form-control"></textarea>
+                                        class="<?= $require_notes ? 'required' : '' ?> form-control"></textarea>
                                 </div>
 
                                 <?php slot('after_primary_customer_fields'); ?>
@@ -359,7 +400,7 @@
 
             <div class="modal-footer">
                 <?php slot('before_appointment_actions'); ?>
-                
+
                 <button class="btn btn-secondary" data-bs-dismiss="modal">
                     <?= lang('cancel') ?>
                 </button>
@@ -373,7 +414,17 @@
 </div>
 
 <?php section('scripts'); ?>
-
 <script src="<?= asset_url('assets/js/components/appointments_modal.js') ?>"></script>
+<script>
+    $(document).ready(function () {
+        $('#is_recurring').change(function () {
+            if ($(this).is(':checked')) {
+                $('#recurrence-options').show();
+            } else {
+                $('#recurrence-options').hide();
+            }
+        });
+    });
+</script>
 
 <?php end_section('scripts'); ?>

@@ -56,10 +56,21 @@ class Calendar extends EA_Controller
         'id_users_provider',
         'id_users_customer',
         'id_services',
+        'is_recurring',
+        'recurrence_frequency',
+        'recurrence_interval',
+        'recurrence_end_type',
+        'recurrence_end_count',
+        'recurrence_end_date'
     ];
 
     public array $optional_appointment_fields = [
-        //
+        'is_recurring',
+        'recurrence_frequency',
+        'recurrence_interval',
+        'recurrence_end_type',
+        'recurrence_end_count',
+        'recurrence_end_date'
     ];
 
     /**

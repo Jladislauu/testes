@@ -508,6 +508,56 @@ class Calendar extends EA_Controller
     /**
      * Delete an unavailability from database.
      */
+    /**
+     * Delete all appointments in a recurrence series.
+     *
+     * @return void
+     */
+    public function delete_recurrence(): void
+    {
+        try {
+            if (cannot('delete', PRIV_APPOINTMENTS)) {
+                throw new RuntimeException('You do not have the required permissions for this task.');
+            }
+            $recurrence_id = request('recurrence_id');
+            $cancellation_reason = (string) request('cancellation_reason');
+            if (empty($recurrence_id)) {
+                throw new InvalidArgumentException('No recurrence id provided.');
+            }
+            // Get all appointments in this recurrence series
+            $appointments = $this->appointments_model->get(['id_recurrence' => $recurrence_id]);
+            $company_color = setting('company_color');
+            $settings = [
+                'company_name' => setting('company_name'),
+                'company_email' => setting('company_email'),
+                'company_link' => setting('company_link'),
+                'company_color' => !empty($company_color) && $company_color != DEFAULT_COMPANY_COLOR ? $company_color : null,
+                'date_format' => setting('date_format'),
+                'time_format' => setting('time_format'),
+            ];
+            foreach ($appointments as $appointment) {
+                $provider = $this->providers_model->find($appointment['id_users_provider']);
+                $customer = $this->customers_model->find($appointment['id_users_customer']);
+                $service = $this->services_model->find($appointment['id_services']);
+                $this->notifications->notify_appointment_deleted(
+                    $appointment,
+                    $service,
+                    $provider,
+                    $customer,
+                    $settings,
+                    $cancellation_reason
+                );
+                $this->synchronization->sync_appointment_deleted($appointment, $provider);
+                $this->webhooks_client->trigger(WEBHOOK_APPOINTMENT_DELETE, $appointment);
+            }
+            // Delete recurrence rule and cascade-delete appointments
+            $this->appointment_recurrences_model->delete($recurrence_id);
+            json_response(['success' => true]);
+        } catch (Throwable $e) {
+            json_exception($e);
+        }
+    }
+
     public function delete_unavailability(): void
     {
         try {

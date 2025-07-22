@@ -34,6 +34,7 @@ App.Components.AppointmentsModal = (function () {
     const $customerNotes = $('#customer-notes');
     const $selectCustomer = $('#select-customer');
     const $saveAppointment = $('#save-appointment');
+    const $deleteSeries = $('#delete-series');
     const $appointmentId = $('#appointment-id');
     const $appointmentLocation = $('#appointment-location');
     const $appointmentStatus = $('#appointment-status');
@@ -502,6 +503,7 @@ App.Components.AppointmentsModal = (function () {
     function resetModal() {
         // Empty form fields.
         $appointmentsModal.find('input, textarea').val('');
+        $deleteSeries.hide();
         $appointmentsModal.find('.modal-message').addClass('.d-none');
 
         const defaultStatusValue = $appointmentStatus.find('option:first').val();
@@ -644,6 +646,36 @@ App.Components.AppointmentsModal = (function () {
         console.log('AppointmentsModal: Initializing...');
         addEventListeners();
         console.log('AppointmentsModal: Event listeners added.');
+        // Recurrence: show/hide delete series button on modal show
+        $appointmentsModal.on('show.bs.modal', () => {
+            const recurrenceId = $('#appointment-recurrence-id').val();
+            if (recurrenceId) {
+                $deleteSeries.show();
+            } else {
+                $deleteSeries.hide();
+            }
+        });
+        // Delete series button click handler
+        $deleteSeries.on('click', () => {
+            const recurrenceId = $('#appointment-recurrence-id').val();
+            if (!recurrenceId) {
+                return;
+            }
+            const reason = window.prompt(lang('delete_series_title'));
+            if (reason === null) {
+                return;
+            }
+            App.Http.Calendar.deleteSeries(recurrenceId, reason)
+                .done(() => {
+                    $appointmentsModal.modal('hide');
+                    $reloadAppointments.trigger('click');
+                })
+                .fail(() => {
+                    $appointmentsModal.find('.modal-message').text(lang('service_communication_error'))
+                        .addClass('alert-danger').removeClass('d-none');
+                    $appointmentsModal.find('.modal-body').scrollTop(0);
+                });
+        });
     }
 
     document.addEventListener('DOMContentLoaded', initialize);

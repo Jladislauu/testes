@@ -255,5 +255,6 @@ App.Http.Calendar = (function () {
         deleteWorkingPlanException,
         getCalendarAppointments,
         getCalendarAppointmentsForTableView,
+        deleteSeries,
     };
 })();

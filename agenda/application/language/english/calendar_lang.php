@@ -82,3 +82,6 @@ $lang['cal_september'] = 'September';
 $lang['cal_october'] = 'October';
 $lang['cal_november'] = 'November';
 $lang['cal_december'] = 'December';
+
+$lang['delete_series'] = 'Delete series';
+$lang['delete_series_title'] = 'Please enter a reason for deleting this series';

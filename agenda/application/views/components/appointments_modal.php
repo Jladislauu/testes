@@ -31,6 +31,7 @@
                         <h5 class="text-black-50 mb-3 fw-light"><?= lang('appointment_details_title') ?></h5>
 
                         <input id="appointment-id" type="hidden">
+                        <input id="appointment-recurrence-id" type="hidden">
 
                         <div class="row">
                             <div class="col-12 col-sm-6">
@@ -444,6 +445,9 @@
             <div class="modal-footer">
                 <?php slot('before_appointment_actions'); ?>
                 
+                <button id="delete-series" class="btn btn-danger me-auto" style="display: none;">
+                    <i class="fas fa-trash me-2"></i><?= lang('delete_series') ?>
+                </button>
                 <button class="btn btn-secondary" data-bs-dismiss="modal">
                     <?= lang('cancel') ?>
                 </button>

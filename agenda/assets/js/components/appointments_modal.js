@@ -52,6 +52,18 @@ App.Components.AppointmentsModal = (function () {
     const $customField4 = $('#custom-field-4');
     const $customField5 = $('#custom-field-5');
 
+    // Recurrence Fields
+    const $enableRecurrence = $('#enable-recurrence');
+    const $recurrenceSettings = $('#recurrence-settings');
+    const $recurrenceType = $('#recurrence-type');
+    const $recurrenceInterval = $('#recurrence-interval');
+    const $recurrenceIntervalLabel = $('#recurrence-interval-label');
+    const $weeklySettings = $('#weekly-settings');
+    const $recurrenceEndOn = $('#recurrence-end-on');
+    const $recurrenceEndAfter = $('#recurrence-end-after');
+    const $recurrenceEndDate = $('#recurrence-end-date');
+    const $recurrenceOccurrences = $('#recurrence-occurrences');
+
     const moment = window.moment;
 
     /**
@@ -153,7 +165,21 @@ App.Components.AppointmentsModal = (function () {
             };
 
             // Save appointment data.
-            App.Http.Calendar.saveAppointment(appointment, customer, successCallback, errorCallback);
+            let recurrenceData = null;
+
+            if ($enableRecurrence.is(':checked')) {
+                recurrenceData = {
+                    recurrence_type: $recurrenceType.val(),
+                    separation_count: $recurrenceInterval.val(),
+                    days_of_week: $weeklySettings.find('input:checked').map(function() {
+                        return $(this).val();
+                    }).get().join(','),
+                    end_date: $recurrenceEndOn.is(':checked') ? $recurrenceEndDate.val() : null,
+                    max_occurrences: $recurrenceEndAfter.is(':checked') ? $recurrenceOccurrences.val() : null
+                };
+            }
+
+            App.Http.Calendar.saveAppointment(appointment, customer, recurrenceData, successCallback, errorCallback);
         });
 
         /**
@@ -433,6 +459,37 @@ App.Components.AppointmentsModal = (function () {
             $customField4.val('');
             $customField5.val('');
         });
+
+        // Show/hide the recurrence fieldset
+        $enableRecurrence.on('change', function() {
+            $recurrenceSettings.fadeToggle($(this).is(':checked'));
+        });
+
+        // Handle recurrence type change
+        $recurrenceType.on('change', function() {
+            const type = $(this).val();
+            if (type === 'weekly') {
+                $weeklySettings.fadeIn();
+                $recurrenceIntervalLabel.text(lang('weeks'));
+            } else if (type === 'monthly') {
+                $weeklySettings.fadeOut();
+                $recurrenceIntervalLabel.text(lang('months'));
+            } else { // daily
+                $weeklySettings.fadeOut();
+                $recurrenceIntervalLabel.text(lang('days'));
+            }
+        });
+
+        // Handle recurrence end type change
+        $('input[name="recurrence-end-type"]').on('change', function() {
+            if ($(this).val() === 'on') {
+                $recurrenceEndDate.prop('disabled', false);
+                $recurrenceOccurrences.prop('disabled', true);
+            } else { // after
+                $recurrenceEndDate.prop('disabled', true);
+                $recurrenceOccurrences.prop('disabled', false);
+            }
+        });
     }
 
     /**
@@ -510,6 +567,16 @@ App.Components.AppointmentsModal = (function () {
 
         App.Utils.UI.initializeDateTimePicker($endDatetime);
         App.Utils.UI.setDateTimePickerValue($endDatetime, endDatetime);
+
+        // Reset recurrence fields
+        $enableRecurrence.prop('checked', false);
+        $recurrenceSettings.hide();
+        $recurrenceType.val('daily').trigger('change');
+        $recurrenceInterval.val(1);
+        $weeklySettings.find('input').prop('checked', false);
+        $recurrenceEndOn.prop('checked', true).trigger('change');
+        $recurrenceEndDate.val('');
+        $recurrenceOccurrences.val(10);
     }
 
     /**

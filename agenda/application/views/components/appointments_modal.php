@@ -191,6 +191,90 @@
                                 <?php slot('after_primary_appointment_fields'); ?>
                             </div>
                         </div>
+
+                        <div class="form-check mt-3">
+                            <input class="form-check-input" type="checkbox" id="enable-recurrence">
+                            <label class="form-check-label" for="enable-recurrence">
+                                <strong><?= lang('repeat_this_appointment') ?></strong>
+                            </label>
+                        </div>
+                    </fieldset>
+
+                    <fieldset id="recurrence-settings" class="mt-4" style="display: none;">
+                        <h5 class="text-black-50 mb-3 fw-light"><?= lang('recurrence_settings') ?></h5>
+                        <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <!-- Recurrence Type -->
+                                <div class="mb-3">
+                                    <label for="recurrence-type" class="form-label"><?= lang('repeats') ?></label>
+                                    <select id="recurrence-type" class="form-select">
+                                        <option value="daily"><?= lang('daily') ?></option>
+                                        <option value="weekly"><?= lang('weekly') ?></option>
+                                        <option value="monthly"><?= lang('monthly') ?></option>
+                                    </select>
+                                </div>
+
+                                <!-- Recurrence Interval -->
+                                <div class="mb-3">
+                                    <label for="recurrence-interval" class="form-label"><?= lang('repeat_every') ?></label>
+                                    <div class="input-group">
+                                        <input type="number" id="recurrence-interval" class="form-control" value="1" min="1">
+                                        <span class="input-group-text" id="recurrence-interval-label"><?= lang('days') ?></span>
+                                    </div>
+                                </div>
+
+                                <!-- Weekly Settings -->
+                                <div id="weekly-settings" class="mb-3" style="display: none;">
+                                    <label class="form-label"><?= lang('repeat_on') ?></label>
+                                    <div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="weekday-sun" value="sun">
+                                            <label class="form-check-label" for="weekday-sun"><?= lang('sun') ?></label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="weekday-mon" value="mon">
+                                            <label class="form-check-label" for="weekday-mon"><?= lang('mon') ?></label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="weekday-tue" value="tue">
+                                            <label class="form-check-label" for="weekday-tue"><?= lang('tue') ?></label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="weekday-wed" value="wed">
+                                            <label class="form-check-label" for="weekday-wed"><?= lang('wed') ?></label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="weekday-thu" value="thu">
+                                            <label class="form-check-label" for="weekday-thu"><?= lang('thu') ?></label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="weekday-fri" value="fri">
+                                            <label class="form-check-label" for="weekday-fri"><?= lang('fri') ?></label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox" id="weekday-sat" value="sat">
+                                            <label class="form-check-label" for="weekday-sat"><?= lang('sat') ?></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                                <!-- End Condition -->
+                                <div class="mb-3">
+                                    <label class="form-label"><?= lang('ends') ?></label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="recurrence-end-type" id="recurrence-end-on" value="on" checked>
+                                        <label class="form-check-label" for="recurrence-end-on"><?= lang('on_date') ?></label>
+                                        <input type="date" id="recurrence-end-date" class="form-control form-control-sm mt-1">
+                                    </div>
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="radio" name="recurrence-end-type" id="recurrence-end-after" value="after">
+                                        <label class="form-check-label" for="recurrence-end-after"><?= lang('after') ?></label>
+                                        <input type="number" id="recurrence-occurrences" class="form-control form-control-sm mt-1" value="10" min="1" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </fieldset>
 
                     <?php slot('after_appointment_details'); ?>

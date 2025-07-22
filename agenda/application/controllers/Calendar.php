@@ -76,8 +76,10 @@ class Calendar extends EA_Controller
         $this->load->model('services_model');
         $this->load->model('providers_model');
         $this->load->model('roles_model');
+        $this->load->model('appointment_recurrences_model');
 
         $this->load->library('accounts');
+        $this->load->library('recurrence_generator');
         $this->load->library('google_sync');
         $this->load->library('notifications');
         $this->load->library('synchronization');
@@ -229,6 +231,7 @@ class Calendar extends EA_Controller
             $customer_data = request('customer_data');
 
             $appointment_data = request('appointment_data');
+            $recurrence_data = request('recurrence_data');
 
             $this->check_event_permissions((int) $appointment_data['id_users_provider']);
 
@@ -280,6 +283,35 @@ class Calendar extends EA_Controller
                 $this->appointments_model->optional($appointment, $this->optional_appointment_fields);
 
                 $appointment['id'] = $this->appointments_model->save($appointment);
+
+                // Handle recurrence if data is provided
+                if (!empty($recurrence_data) && $appointment['id']) {
+                    $recurrence_id = $this->appointment_recurrences_model->save($recurrence_data);
+
+                    $first_appointment = $this->appointments_model->find($appointment['id']);
+                    $first_appointment['id_recurrence'] = $recurrence_id;
+                    $this->appointments_model->save($first_appointment);
+
+                    $duration_seconds = strtotime($first_appointment['end_datetime']) - strtotime($first_appointment['start_datetime']);
+
+                    $dates = $this->recurrence_generator->generate_dates($recurrence_data, $first_appointment['start_datetime']);
+
+                    // Remove the first date, as it's already created
+                    array_shift($dates);
+
+                    foreach ($dates as $start_date) {
+                        $new_appointment_data = $first_appointment;
+                        unset($new_appointment_data['id']); // Create a new appointment
+                        
+                        $new_appointment_data['start_datetime'] = $start_date->format('Y-m-d H:i:s');
+                        
+                        $end_date = clone $start_date;
+                        $end_date->add(new DateInterval('PT' . $duration_seconds . 'S'));
+                        $new_appointment_data['end_datetime'] = $end_date->format('Y-m-d H:i:s');
+
+                        $this->appointments_model->save($new_appointment_data);
+                    }
+                }
             }
 
             if (empty($appointment['id'])) {

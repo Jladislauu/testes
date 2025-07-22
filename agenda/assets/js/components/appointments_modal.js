@@ -462,6 +462,7 @@ App.Components.AppointmentsModal = (function () {
 
         // Show/hide the recurrence fieldset
         $enableRecurrence.on('change', function() {
+            console.log('Recurrence checkbox clicked. Is checked:', $(this).is(':checked'));
             $recurrenceSettings.fadeToggle($(this).is(':checked'));
         });
 
@@ -640,7 +641,9 @@ App.Components.AppointmentsModal = (function () {
      * Initialize the module.
      */
     function initialize() {
+        console.log('AppointmentsModal: Initializing...');
         addEventListeners();
+        console.log('AppointmentsModal: Event listeners added.');
     }
 
     document.addEventListener('DOMContentLoaded', initialize);

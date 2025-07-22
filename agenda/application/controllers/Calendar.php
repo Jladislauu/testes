@@ -285,8 +285,9 @@ class Calendar extends EA_Controller
                 $appointment['id'] = $this->appointments_model->save($appointment);
 
                 // Handle recurrence if data is provided
-                if (!empty($recurrence_data) && $appointment['id']) {
-                    log_message('debug', 'Recurrence Data Received: ' . json_encode($recurrence_data));
+                log_message('debug', 'Checking for recurrence data. Payload: ' . json_encode($recurrence_data));
+                if ($recurrence_data && !empty($recurrence_data['recurrence_type']) && $appointment['id']) {
+                    log_message('debug', 'Recurrence Data Found and is being processed: ' . json_encode($recurrence_data));
                     $recurrence_id = $this->appointment_recurrences_model->save($recurrence_data);
                     log_message('debug', 'Recurrence Rule Saved with ID: ' . $recurrence_id);
 

@@ -484,4 +484,26 @@ $lang['invalid_credentials_provided'] = 'Credenciais inválidas fornecidas, por 
 $lang['calendar_url'] = 'URL do Calendário';
 $lang['please_select'] = 'Por Favor, Selecione';
 $lang['secret_header'] = 'Secret Header';
+$lang['repeat_this_appointment'] = 'Repetir este agendamento';
+$lang['recurrence_settings'] = 'Configurações de Recorrência';
+$lang['repeats'] = 'Repete';
+$lang['daily'] = 'Diariamente';
+$lang['weekly'] = 'Semanalmente';
+$lang['monthly'] = 'Mensalmente';
+$lang['repeat_every'] = 'Repetir a cada';
+$lang['weeks'] = 'semanas';
+$lang['months'] = 'meses';
+$lang['repeat_on'] = 'Repetir em';
+$lang['sun'] = 'Dom';
+$lang['mon'] = 'Seg';
+$lang['tue'] = 'Ter';
+$lang['wed'] = 'Qua';
+$lang['thu'] = 'Qui';
+$lang['fri'] = 'Sex';
+$lang['sat'] = 'Sáb';
+$lang['ends'] = 'Termina';
+$lang['on_date'] = 'Em uma data';
+$lang['after'] = 'Após';
+$lang['occurrences'] = 'ocorrências';
+
 // End

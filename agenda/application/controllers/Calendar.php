@@ -301,7 +301,6 @@ class Calendar extends EA_Controller
                     log_message('debug', 'Generated ' . count($dates) . ' dates for recurrence.');
 
                     // Remove the first date, as it's already created
-                    array_shift($dates);
                 
                     // Prepare sync context
                     $service = $this->services_model->find($first_appointment['id_services']);

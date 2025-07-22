@@ -32,6 +32,8 @@ class Recurrence_generator {
         $endDate = isset($rule['end_date']) && !empty($rule['end_date']) ? new DateTime($rule['end_date']) : null;
         $maxOccurrences = isset($rule['max_occurrences']) ? (int)$rule['max_occurrences'] : null;
         $intervalCount = isset($rule['separation_count']) ? (int)$rule['separation_count'] : 1;
+$totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
+$totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
 
         // Add first occurrence
         $occurrences[] = clone $startDate;
@@ -39,7 +41,7 @@ class Recurrence_generator {
         switch ($rule['recurrence_type']) {
             case 'daily':
                 $current = clone $startDate;
-                while (true) {
+                while (true) {\n                    $addedThisWeek = false;
                     $current->add(new DateInterval("P{$intervalCount}D"));
                     if ($endDate && $current > $endDate) {
                         break;
@@ -73,7 +75,7 @@ class Recurrence_generator {
                 }
 
                 $weekCount = 0;
-                while (true) {
+                while (true) {\n                    $addedThisWeek = false;
                     foreach ($weekDays as $dow) {
                         $year = (int)$startDate->format('o');
                         $week = (int)$startDate->format('W') + ($weekCount * $intervalCount);
@@ -85,7 +87,7 @@ class Recurrence_generator {
                         }
                         list($h,$i,$s) = explode(':', $time);
                         $date->setTime((int)$h, (int)$i, (int)$s);
-                        if ($date < $startDate) {
+                        if (\$date <= \$startDate) {
                             continue;
                         }
                         if ($endDate && $date > $endDate) {
@@ -105,7 +107,7 @@ class Recurrence_generator {
 
             case 'monthly':
                 $current = clone $startDate;
-                while (true) {
+                while (true) {\n                    $addedThisWeek = false;
                     $current->add(new DateInterval("P{$intervalCount}M"));
                     // Retain original time
                     list($h,$i,$s) = explode(':', $time);

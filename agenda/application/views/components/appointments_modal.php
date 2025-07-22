@@ -31,7 +31,7 @@
                         <h5 class="text-black-50 mb-3 fw-light"><?= lang('appointment_details_title') ?></h5>
 
                         <input id="appointment-id" type="hidden">
-                        <input id="appointment-recurrence-id" type="hidden">
+                        <input id="appointment-recurrence-id" type="hidden" value="<?= e($edit_appointment['id_recurrence'] ?? '') ?>">
 
                         <div class="row">
                             <div class="col-12 col-sm-6">

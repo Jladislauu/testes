@@ -259,10 +259,6 @@ class AnalyticsHub extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'deleteCommercial' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
               ],
             ],'get' => [
               'path' => 'v1/{+name}',

@@ -22,26 +22,8 @@ class SelectedResource extends \Google\Model
   /**
    * @var string
    */
-  public $routine;
-  /**
-   * @var string
-   */
   public $table;
 
-  /**
-   * @param string
-   */
-  public function setRoutine($routine)
-  {
-    $this->routine = $routine;
-  }
-  /**
-   * @return string
-   */
-  public function getRoutine()
-  {
-    return $this->routine;
-  }
   /**
    * @param string
    */

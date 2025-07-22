@@ -32,11 +32,7 @@ class SapDiscoveryComponent extends \Google\Collection
    * @var string
    */
   public $hostProject;
-  /**
-   * @var string
-   */
-  public $region;
-  protected $replicationSitesType = SapDiscoveryComponentReplicationSite::class;
+  protected $replicationSitesType = SapDiscoveryComponent::class;
   protected $replicationSitesDataType = 'array';
   protected $resourcesType = SapDiscoveryResource::class;
   protected $resourcesDataType = 'array';
@@ -106,28 +102,14 @@ class SapDiscoveryComponent extends \Google\Collection
     return $this->hostProject;
   }
   /**
-   * @param string
-   */
-  public function setRegion($region)
-  {
-    $this->region = $region;
-  }
-  /**
-   * @return string
-   */
-  public function getRegion()
-  {
-    return $this->region;
-  }
-  /**
-   * @param SapDiscoveryComponentReplicationSite[]
+   * @param SapDiscoveryComponent[]
    */
   public function setReplicationSites($replicationSites)
   {
     $this->replicationSites = $replicationSites;
   }
   /**
-   * @return SapDiscoveryComponentReplicationSite[]
+   * @return SapDiscoveryComponent[]
    */
   public function getReplicationSites()
   {

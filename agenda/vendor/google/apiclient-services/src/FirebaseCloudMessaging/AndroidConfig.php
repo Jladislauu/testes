@@ -20,10 +20,6 @@ namespace Google\Service\FirebaseCloudMessaging;
 class AndroidConfig extends \Google\Model
 {
   /**
-   * @var bool
-   */
-  public $bandwidthConstrainedOk;
-  /**
    * @var string
    */
   public $collapseKey;
@@ -52,20 +48,6 @@ class AndroidConfig extends \Google\Model
    */
   public $ttl;
 
-  /**
-   * @param bool
-   */
-  public function setBandwidthConstrainedOk($bandwidthConstrainedOk)
-  {
-    $this->bandwidthConstrainedOk = $bandwidthConstrainedOk;
-  }
-  /**
-   * @return bool
-   */
-  public function getBandwidthConstrainedOk()
-  {
-    return $this->bandwidthConstrainedOk;
-  }
   /**
    * @param string
    */

@@ -26,10 +26,6 @@ class GkeCluster extends \Google\Model
   /**
    * @var bool
    */
-  public $dnsEndpoint;
-  /**
-   * @var bool
-   */
   public $internalIp;
   /**
    * @var string
@@ -49,20 +45,6 @@ class GkeCluster extends \Google\Model
   public function getCluster()
   {
     return $this->cluster;
-  }
-  /**
-   * @param bool
-   */
-  public function setDnsEndpoint($dnsEndpoint)
-  {
-    $this->dnsEndpoint = $dnsEndpoint;
-  }
-  /**
-   * @return bool
-   */
-  public function getDnsEndpoint()
-  {
-    return $this->dnsEndpoint;
   }
   /**
    * @param bool

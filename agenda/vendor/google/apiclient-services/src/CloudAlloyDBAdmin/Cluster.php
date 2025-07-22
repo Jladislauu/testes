@@ -27,8 +27,6 @@ class Cluster extends \Google\Model
   protected $automatedBackupPolicyDataType = '';
   protected $backupSourceType = BackupSource::class;
   protected $backupSourceDataType = '';
-  protected $cloudsqlBackupRunSourceType = CloudSQLBackupRunSource::class;
-  protected $cloudsqlBackupRunSourceDataType = '';
   /**
    * @var string
    */
@@ -163,20 +161,6 @@ class Cluster extends \Google\Model
   public function getBackupSource()
   {
     return $this->backupSource;
-  }
-  /**
-   * @param CloudSQLBackupRunSource
-   */
-  public function setCloudsqlBackupRunSource(CloudSQLBackupRunSource $cloudsqlBackupRunSource)
-  {
-    $this->cloudsqlBackupRunSource = $cloudsqlBackupRunSource;
-  }
-  /**
-   * @return CloudSQLBackupRunSource
-   */
-  public function getCloudsqlBackupRunSource()
-  {
-    return $this->cloudsqlBackupRunSource;
   }
   /**
    * @param string

@@ -20,10 +20,6 @@ namespace Google\Service\VMMigrationService;
 class ImageImportOsAdaptationParameters extends \Google\Model
 {
   /**
-   * @var string
-   */
-  public $bootConversion;
-  /**
    * @var bool
    */
   public $generalize;
@@ -32,20 +28,6 @@ class ImageImportOsAdaptationParameters extends \Google\Model
    */
   public $licenseType;
 
-  /**
-   * @param string
-   */
-  public function setBootConversion($bootConversion)
-  {
-    $this->bootConversion = $bootConversion;
-  }
-  /**
-   * @return string
-   */
-  public function getBootConversion()
-  {
-    return $this->bootConversion;
-  }
   /**
    * @param bool
    */

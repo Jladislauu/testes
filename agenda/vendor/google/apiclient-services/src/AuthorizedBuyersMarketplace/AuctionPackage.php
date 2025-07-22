@@ -31,10 +31,6 @@ class AuctionPackage extends \Google\Collection
   /**
    * @var string
    */
-  public $dealOwnerSeatId;
-  /**
-   * @var string
-   */
   public $description;
   /**
    * @var string
@@ -90,20 +86,6 @@ class AuctionPackage extends \Google\Collection
   public function getCreator()
   {
     return $this->creator;
-  }
-  /**
-   * @param string
-   */
-  public function setDealOwnerSeatId($dealOwnerSeatId)
-  {
-    $this->dealOwnerSeatId = $dealOwnerSeatId;
-  }
-  /**
-   * @return string
-   */
-  public function getDealOwnerSeatId()
-  {
-    return $this->dealOwnerSeatId;
   }
   /**
    * @param string

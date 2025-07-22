@@ -23,10 +23,6 @@ class EgressSource extends \Google\Model
    * @var string
    */
   public $accessLevel;
-  /**
-   * @var string
-   */
-  public $resource;
 
   /**
    * @param string
@@ -41,20 +37,6 @@ class EgressSource extends \Google\Model
   public function getAccessLevel()
   {
     return $this->accessLevel;
-  }
-  /**
-   * @param string
-   */
-  public function setResource($resource)
-  {
-    $this->resource = $resource;
-  }
-  /**
-   * @return string
-   */
-  public function getResource()
-  {
-    return $this->resource;
   }
 }
 

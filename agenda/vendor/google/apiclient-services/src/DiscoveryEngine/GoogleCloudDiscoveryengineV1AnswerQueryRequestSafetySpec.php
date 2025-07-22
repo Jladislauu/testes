@@ -17,15 +17,12 @@
 
 namespace Google\Service\DiscoveryEngine;
 
-class GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpec extends \Google\Collection
+class GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpec extends \Google\Model
 {
-  protected $collection_key = 'safetySettings';
   /**
    * @var bool
    */
   public $enable;
-  protected $safetySettingsType = GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySetting::class;
-  protected $safetySettingsDataType = 'array';
 
   /**
    * @param bool
@@ -40,20 +37,6 @@ class GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpec extends \Google\C
   public function getEnable()
   {
     return $this->enable;
-  }
-  /**
-   * @param GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySetting[]
-   */
-  public function setSafetySettings($safetySettings)
-  {
-    $this->safetySettings = $safetySettings;
-  }
-  /**
-   * @return GoogleCloudDiscoveryengineV1AnswerQueryRequestSafetySpecSafetySetting[]
-   */
-  public function getSafetySettings()
-  {
-    return $this->safetySettings;
   }
 }
 

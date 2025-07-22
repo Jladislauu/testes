@@ -20,8 +20,6 @@ namespace Google\Service\AndroidManagement;
 class Command extends \Google\Collection
 {
   protected $collection_key = 'resetPasswordFlags';
-  protected $addEsimParamsType = AddEsimParams::class;
-  protected $addEsimParamsDataType = '';
   protected $clearAppsDataParamsType = ClearAppsDataParams::class;
   protected $clearAppsDataParamsDataType = '';
   protected $clearAppsDataStatusType = ClearAppsDataStatus::class;
@@ -38,18 +36,10 @@ class Command extends \Google\Collection
    * @var string
    */
   public $errorCode;
-  protected $esimStatusType = EsimCommandStatus::class;
-  protected $esimStatusDataType = '';
   /**
    * @var string
    */
   public $newPassword;
-  protected $removeEsimParamsType = RemoveEsimParams::class;
-  protected $removeEsimParamsDataType = '';
-  protected $requestDeviceInfoParamsType = RequestDeviceInfoParams::class;
-  protected $requestDeviceInfoParamsDataType = '';
-  protected $requestDeviceInfoStatusType = RequestDeviceInfoStatus::class;
-  protected $requestDeviceInfoStatusDataType = '';
   /**
    * @var string[]
    */
@@ -71,20 +61,6 @@ class Command extends \Google\Collection
    */
   public $userName;
 
-  /**
-   * @param AddEsimParams
-   */
-  public function setAddEsimParams(AddEsimParams $addEsimParams)
-  {
-    $this->addEsimParams = $addEsimParams;
-  }
-  /**
-   * @return AddEsimParams
-   */
-  public function getAddEsimParams()
-  {
-    return $this->addEsimParams;
-  }
   /**
    * @param ClearAppsDataParams
    */
@@ -156,20 +132,6 @@ class Command extends \Google\Collection
     return $this->errorCode;
   }
   /**
-   * @param EsimCommandStatus
-   */
-  public function setEsimStatus(EsimCommandStatus $esimStatus)
-  {
-    $this->esimStatus = $esimStatus;
-  }
-  /**
-   * @return EsimCommandStatus
-   */
-  public function getEsimStatus()
-  {
-    return $this->esimStatus;
-  }
-  /**
    * @param string
    */
   public function setNewPassword($newPassword)
@@ -182,48 +144,6 @@ class Command extends \Google\Collection
   public function getNewPassword()
   {
     return $this->newPassword;
-  }
-  /**
-   * @param RemoveEsimParams
-   */
-  public function setRemoveEsimParams(RemoveEsimParams $removeEsimParams)
-  {
-    $this->removeEsimParams = $removeEsimParams;
-  }
-  /**
-   * @return RemoveEsimParams
-   */
-  public function getRemoveEsimParams()
-  {
-    return $this->removeEsimParams;
-  }
-  /**
-   * @param RequestDeviceInfoParams
-   */
-  public function setRequestDeviceInfoParams(RequestDeviceInfoParams $requestDeviceInfoParams)
-  {
-    $this->requestDeviceInfoParams = $requestDeviceInfoParams;
-  }
-  /**
-   * @return RequestDeviceInfoParams
-   */
-  public function getRequestDeviceInfoParams()
-  {
-    return $this->requestDeviceInfoParams;
-  }
-  /**
-   * @param RequestDeviceInfoStatus
-   */
-  public function setRequestDeviceInfoStatus(RequestDeviceInfoStatus $requestDeviceInfoStatus)
-  {
-    $this->requestDeviceInfoStatus = $requestDeviceInfoStatus;
-  }
-  /**
-   * @return RequestDeviceInfoStatus
-   */
-  public function getRequestDeviceInfoStatus()
-  {
-    return $this->requestDeviceInfoStatus;
   }
   /**
    * @param string[]

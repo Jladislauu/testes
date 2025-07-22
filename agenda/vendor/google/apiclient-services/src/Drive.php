@@ -27,7 +27,7 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/workspace/drive/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/drive/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
@@ -73,6 +73,7 @@ class Drive extends \Google\Service
   public $comments;
   public $drives;
   public $files;
+  public $operation;
   public $operations;
   public $permissions;
   public $replies;
@@ -958,14 +959,14 @@ class Drive extends \Google\Service
           ]
         ]
     );
-    $this->operations = new Drive\Resource\Operations(
+    $this->operation = new Drive\Resource\Operation(
         $this,
         $this->serviceName,
-        'operations',
+        'operation',
         [
           'methods' => [
             'cancel' => [
-              'path' => 'operations/{name}:cancel',
+              'path' => 'operation/{name}:cancel',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -975,7 +976,7 @@ class Drive extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'operations/{name}',
+              'path' => 'operation/{name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -984,7 +985,17 @@ class Drive extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'get' => [
+            ],
+          ]
+        ]
+    );
+    $this->operations = new Drive\Resource\Operations(
+        $this,
+        $this->serviceName,
+        'operations',
+        [
+          'methods' => [
+            'get' => [
               'path' => 'operations/{name}',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -1038,10 +1049,6 @@ class Drive extends \Google\Service
                   'location' => 'query',
                   'type' => 'string',
                 ],
-                'enforceExpansiveAccess' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
-                ],
                 'enforceSingleParent' => [
                   'location' => 'query',
                   'type' => 'boolean',
@@ -1084,10 +1091,6 @@ class Drive extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'enforceExpansiveAccess' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ],
                 'supportsAllDrives' => [
                   'location' => 'query',
@@ -1176,10 +1179,6 @@ class Drive extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'enforceExpansiveAccess' => [
-                  'location' => 'query',
-                  'type' => 'boolean',
                 ],
                 'removeExpiration' => [
                   'location' => 'query',

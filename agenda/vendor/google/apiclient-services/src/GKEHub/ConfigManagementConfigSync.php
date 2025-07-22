@@ -17,11 +17,12 @@
 
 namespace Google\Service\GKEHub;
 
-class ConfigManagementConfigSync extends \Google\Collection
+class ConfigManagementConfigSync extends \Google\Model
 {
-  protected $collection_key = 'deploymentOverrides';
-  protected $deploymentOverridesType = ConfigManagementDeploymentOverride::class;
-  protected $deploymentOverridesDataType = 'array';
+  /**
+   * @var bool
+   */
+  public $allowVerticalScale;
   /**
    * @var bool
    */
@@ -48,18 +49,18 @@ class ConfigManagementConfigSync extends \Google\Collection
   public $stopSyncing;
 
   /**
-   * @param ConfigManagementDeploymentOverride[]
+   * @param bool
    */
-  public function setDeploymentOverrides($deploymentOverrides)
+  public function setAllowVerticalScale($allowVerticalScale)
   {
-    $this->deploymentOverrides = $deploymentOverrides;
+    $this->allowVerticalScale = $allowVerticalScale;
   }
   /**
-   * @return ConfigManagementDeploymentOverride[]
+   * @return bool
    */
-  public function getDeploymentOverrides()
+  public function getAllowVerticalScale()
   {
-    return $this->deploymentOverrides;
+    return $this->allowVerticalScale;
   }
   /**
    * @param bool

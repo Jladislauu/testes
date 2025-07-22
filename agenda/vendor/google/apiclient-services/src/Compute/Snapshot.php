@@ -56,10 +56,6 @@ class Snapshot extends \Google\Collection
    * @var bool
    */
   public $enableConfidentialCompute;
-  /**
-   * @var bool
-   */
-  public $guestFlush;
   protected $guestOsFeaturesType = GuestOsFeature::class;
   protected $guestOsFeaturesDataType = 'array';
   /**
@@ -286,20 +282,6 @@ class Snapshot extends \Google\Collection
   public function getEnableConfidentialCompute()
   {
     return $this->enableConfidentialCompute;
-  }
-  /**
-   * @param bool
-   */
-  public function setGuestFlush($guestFlush)
-  {
-    $this->guestFlush = $guestFlush;
-  }
-  /**
-   * @return bool
-   */
-  public function getGuestFlush()
-  {
-    return $this->guestFlush;
   }
   /**
    * @param GuestOsFeature[]

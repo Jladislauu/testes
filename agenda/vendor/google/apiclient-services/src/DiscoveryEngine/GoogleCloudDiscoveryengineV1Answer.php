@@ -53,8 +53,6 @@ class GoogleCloudDiscoveryengineV1Answer extends \Google\Collection
    * @var string[]
    */
   public $relatedQuestions;
-  protected $safetyRatingsType = GoogleCloudDiscoveryengineV1SafetyRating::class;
-  protected $safetyRatingsDataType = 'array';
   /**
    * @var string
    */
@@ -209,20 +207,6 @@ class GoogleCloudDiscoveryengineV1Answer extends \Google\Collection
   public function getRelatedQuestions()
   {
     return $this->relatedQuestions;
-  }
-  /**
-   * @param GoogleCloudDiscoveryengineV1SafetyRating[]
-   */
-  public function setSafetyRatings($safetyRatings)
-  {
-    $this->safetyRatings = $safetyRatings;
-  }
-  /**
-   * @return GoogleCloudDiscoveryengineV1SafetyRating[]
-   */
-  public function getSafetyRatings()
-  {
-    return $this->safetyRatings;
   }
   /**
    * @param string

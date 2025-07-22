@@ -38,8 +38,6 @@ class Backup extends \Google\Collection
    * @var string
    */
   public $createTime;
-  protected $encryptionInfoType = EncryptionInfo::class;
-  protected $encryptionInfoDataType = '';
   /**
    * @var string
    */
@@ -146,20 +144,6 @@ class Backup extends \Google\Collection
   public function getCreateTime()
   {
     return $this->createTime;
-  }
-  /**
-   * @param EncryptionInfo
-   */
-  public function setEncryptionInfo(EncryptionInfo $encryptionInfo)
-  {
-    $this->encryptionInfo = $encryptionInfo;
-  }
-  /**
-   * @return EncryptionInfo
-   */
-  public function getEncryptionInfo()
-  {
-    return $this->encryptionInfo;
   }
   /**
    * @param string

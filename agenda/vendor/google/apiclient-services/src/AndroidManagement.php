@@ -106,16 +106,6 @@ class AndroidManagement extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'generateEnterpriseUpgradeUrl' => [
-              'path' => 'v1/{+name}:generateEnterpriseUpgradeUrl',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],'get' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'GET',
@@ -615,11 +605,6 @@ class AndroidManagement extends \Google\Service
                 'adminEmail' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-                'allowedDomains' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
                 ],
                 'callbackUrl' => [
                   'location' => 'query',

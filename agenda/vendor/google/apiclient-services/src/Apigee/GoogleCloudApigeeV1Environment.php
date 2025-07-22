@@ -23,8 +23,6 @@ class GoogleCloudApigeeV1Environment extends \Google\Model
    * @var string
    */
   public $apiProxyType;
-  protected $clientIpResolutionConfigType = GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig::class;
-  protected $clientIpResolutionConfigDataType = '';
   /**
    * @var string
    */
@@ -83,20 +81,6 @@ class GoogleCloudApigeeV1Environment extends \Google\Model
   public function getApiProxyType()
   {
     return $this->apiProxyType;
-  }
-  /**
-   * @param GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig
-   */
-  public function setClientIpResolutionConfig(GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig $clientIpResolutionConfig)
-  {
-    $this->clientIpResolutionConfig = $clientIpResolutionConfig;
-  }
-  /**
-   * @return GoogleCloudApigeeV1EnvironmentClientIPResolutionConfig
-   */
-  public function getClientIpResolutionConfig()
-  {
-    return $this->clientIpResolutionConfig;
   }
   /**
    * @param string

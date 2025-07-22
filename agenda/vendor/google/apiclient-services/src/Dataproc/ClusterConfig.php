@@ -27,10 +27,6 @@ class ClusterConfig extends \Google\Collection
   /**
    * @var string
    */
-  public $clusterType;
-  /**
-   * @var string
-   */
   public $configBucket;
   protected $dataprocMetricConfigType = DataprocMetricConfig::class;
   protected $dataprocMetricConfigDataType = '';
@@ -90,20 +86,6 @@ class ClusterConfig extends \Google\Collection
   public function getAuxiliaryNodeGroups()
   {
     return $this->auxiliaryNodeGroups;
-  }
-  /**
-   * @param string
-   */
-  public function setClusterType($clusterType)
-  {
-    $this->clusterType = $clusterType;
-  }
-  /**
-   * @return string
-   */
-  public function getClusterType()
-  {
-    return $this->clusterType;
   }
   /**
    * @param string

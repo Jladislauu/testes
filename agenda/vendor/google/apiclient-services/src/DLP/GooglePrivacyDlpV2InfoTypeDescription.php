@@ -43,10 +43,6 @@ class GooglePrivacyDlpV2InfoTypeDescription extends \Google\Collection
   /**
    * @var string[]
    */
-  public $specificInfoTypes;
-  /**
-   * @var string[]
-   */
   public $supportedBy;
   protected $versionsType = GooglePrivacyDlpV2VersionDescription::class;
   protected $versionsDataType = 'array';
@@ -134,20 +130,6 @@ class GooglePrivacyDlpV2InfoTypeDescription extends \Google\Collection
   public function getSensitivityScore()
   {
     return $this->sensitivityScore;
-  }
-  /**
-   * @param string[]
-   */
-  public function setSpecificInfoTypes($specificInfoTypes)
-  {
-    $this->specificInfoTypes = $specificInfoTypes;
-  }
-  /**
-   * @return string[]
-   */
-  public function getSpecificInfoTypes()
-  {
-    return $this->specificInfoTypes;
   }
   /**
    * @param string[]

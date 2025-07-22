@@ -24,8 +24,6 @@ class ClusterUpdate extends \Google\Collection
   protected $additionalPodRangesConfigDataType = '';
   protected $desiredAddonsConfigType = AddonsConfig::class;
   protected $desiredAddonsConfigDataType = '';
-  protected $desiredAnonymousAuthenticationConfigType = AnonymousAuthenticationConfig::class;
-  protected $desiredAnonymousAuthenticationConfigDataType = '';
   protected $desiredAuthenticatorGroupsConfigType = AuthenticatorGroupsConfig::class;
   protected $desiredAuthenticatorGroupsConfigDataType = '';
   protected $desiredAutopilotWorkloadPolicyConfigType = WorkloadPolicyConfig::class;
@@ -54,10 +52,6 @@ class ClusterUpdate extends \Google\Collection
   public $desiredDefaultEnablePrivateNodes;
   protected $desiredDefaultSnatStatusType = DefaultSnatStatus::class;
   protected $desiredDefaultSnatStatusDataType = '';
-  /**
-   * @var bool
-   */
-  public $desiredDisableL4LbFirewallReconciliation;
   protected $desiredDnsConfigType = DNSConfig::class;
   protected $desiredDnsConfigDataType = '';
   /**
@@ -152,8 +146,6 @@ class ClusterUpdate extends \Google\Collection
   protected $desiredNotificationConfigDataType = '';
   protected $desiredParentProductConfigType = ParentProductConfig::class;
   protected $desiredParentProductConfigDataType = '';
-  protected $desiredPodAutoscalingType = PodAutoscaling::class;
-  protected $desiredPodAutoscalingDataType = '';
   protected $desiredPrivateClusterConfigType = PrivateClusterConfig::class;
   protected $desiredPrivateClusterConfigDataType = '';
   /**
@@ -220,20 +212,6 @@ class ClusterUpdate extends \Google\Collection
   public function getDesiredAddonsConfig()
   {
     return $this->desiredAddonsConfig;
-  }
-  /**
-   * @param AnonymousAuthenticationConfig
-   */
-  public function setDesiredAnonymousAuthenticationConfig(AnonymousAuthenticationConfig $desiredAnonymousAuthenticationConfig)
-  {
-    $this->desiredAnonymousAuthenticationConfig = $desiredAnonymousAuthenticationConfig;
-  }
-  /**
-   * @return AnonymousAuthenticationConfig
-   */
-  public function getDesiredAnonymousAuthenticationConfig()
-  {
-    return $this->desiredAnonymousAuthenticationConfig;
   }
   /**
    * @param AuthenticatorGroupsConfig
@@ -402,20 +380,6 @@ class ClusterUpdate extends \Google\Collection
   public function getDesiredDefaultSnatStatus()
   {
     return $this->desiredDefaultSnatStatus;
-  }
-  /**
-   * @param bool
-   */
-  public function setDesiredDisableL4LbFirewallReconciliation($desiredDisableL4LbFirewallReconciliation)
-  {
-    $this->desiredDisableL4LbFirewallReconciliation = $desiredDisableL4LbFirewallReconciliation;
-  }
-  /**
-   * @return bool
-   */
-  public function getDesiredDisableL4LbFirewallReconciliation()
-  {
-    return $this->desiredDisableL4LbFirewallReconciliation;
   }
   /**
    * @param DNSConfig
@@ -906,20 +870,6 @@ class ClusterUpdate extends \Google\Collection
   public function getDesiredParentProductConfig()
   {
     return $this->desiredParentProductConfig;
-  }
-  /**
-   * @param PodAutoscaling
-   */
-  public function setDesiredPodAutoscaling(PodAutoscaling $desiredPodAutoscaling)
-  {
-    $this->desiredPodAutoscaling = $desiredPodAutoscaling;
-  }
-  /**
-   * @return PodAutoscaling
-   */
-  public function getDesiredPodAutoscaling()
-  {
-    return $this->desiredPodAutoscaling;
   }
   /**
    * @param PrivateClusterConfig

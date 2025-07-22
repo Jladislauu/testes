@@ -25,10 +25,6 @@ class SqlServerConnectionProfile extends \Google\Model
    * @var string
    */
   public $cloudSqlId;
-  /**
-   * @var string
-   */
-  public $database;
   protected $forwardSshConnectivityType = ForwardSshTunnelConnectivity::class;
   protected $forwardSshConnectivityDataType = '';
   /**
@@ -87,20 +83,6 @@ class SqlServerConnectionProfile extends \Google\Model
   public function getCloudSqlId()
   {
     return $this->cloudSqlId;
-  }
-  /**
-   * @param string
-   */
-  public function setDatabase($database)
-  {
-    $this->database = $database;
-  }
-  /**
-   * @return string
-   */
-  public function getDatabase()
-  {
-    return $this->database;
   }
   /**
    * @param ForwardSshTunnelConnectivity

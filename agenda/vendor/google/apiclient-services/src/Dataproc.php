@@ -1180,11 +1180,6 @@ class Dataproc extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'jobIds' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
                 'jobStatus' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -1214,11 +1209,6 @@ class Dataproc extends \Google\Service
                 'details' => [
                   'location' => 'query',
                   'type' => 'boolean',
-                ],
-                'operationIds' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
                 ],
                 'pageSize' => [
                   'location' => 'query',
@@ -1325,11 +1315,6 @@ class Dataproc extends \Google\Service
                 'parent' => [
                   'location' => 'query',
                   'type' => 'string',
-                ],
-                'stageIds' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
                 ],
                 'stageStatus' => [
                   'location' => 'query',

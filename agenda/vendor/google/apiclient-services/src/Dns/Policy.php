@@ -26,8 +26,6 @@ class Policy extends \Google\Collection
    * @var string
    */
   public $description;
-  protected $dns64ConfigType = PolicyDns64Config::class;
-  protected $dns64ConfigDataType = '';
   /**
    * @var bool
    */
@@ -78,20 +76,6 @@ class Policy extends \Google\Collection
   public function getDescription()
   {
     return $this->description;
-  }
-  /**
-   * @param PolicyDns64Config
-   */
-  public function setDns64Config(PolicyDns64Config $dns64Config)
-  {
-    $this->dns64Config = $dns64Config;
-  }
-  /**
-   * @return PolicyDns64Config
-   */
-  public function getDns64Config()
-  {
-    return $this->dns64Config;
   }
   /**
    * @param bool

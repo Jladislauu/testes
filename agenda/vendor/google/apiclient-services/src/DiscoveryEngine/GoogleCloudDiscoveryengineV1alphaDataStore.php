@@ -48,22 +48,12 @@ class GoogleCloudDiscoveryengineV1alphaDataStore extends \Google\Collection
   public $displayName;
   protected $documentProcessingConfigType = GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfig::class;
   protected $documentProcessingConfigDataType = '';
-  protected $healthcareFhirConfigType = GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig::class;
-  protected $healthcareFhirConfigDataType = '';
-  /**
-   * @var string
-   */
-  public $identityMappingStore;
   protected $idpConfigType = GoogleCloudDiscoveryengineV1alphaIdpConfig::class;
   protected $idpConfigDataType = '';
   /**
    * @var string
    */
   public $industryVertical;
-  /**
-   * @var bool
-   */
-  public $isInfobotFaqDataStore;
   /**
    * @var string
    */
@@ -214,34 +204,6 @@ class GoogleCloudDiscoveryengineV1alphaDataStore extends \Google\Collection
     return $this->documentProcessingConfig;
   }
   /**
-   * @param GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig
-   */
-  public function setHealthcareFhirConfig(GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig $healthcareFhirConfig)
-  {
-    $this->healthcareFhirConfig = $healthcareFhirConfig;
-  }
-  /**
-   * @return GoogleCloudDiscoveryengineV1alphaHealthcareFhirConfig
-   */
-  public function getHealthcareFhirConfig()
-  {
-    return $this->healthcareFhirConfig;
-  }
-  /**
-   * @param string
-   */
-  public function setIdentityMappingStore($identityMappingStore)
-  {
-    $this->identityMappingStore = $identityMappingStore;
-  }
-  /**
-   * @return string
-   */
-  public function getIdentityMappingStore()
-  {
-    return $this->identityMappingStore;
-  }
-  /**
    * @param GoogleCloudDiscoveryengineV1alphaIdpConfig
    */
   public function setIdpConfig(GoogleCloudDiscoveryengineV1alphaIdpConfig $idpConfig)
@@ -268,20 +230,6 @@ class GoogleCloudDiscoveryengineV1alphaDataStore extends \Google\Collection
   public function getIndustryVertical()
   {
     return $this->industryVertical;
-  }
-  /**
-   * @param bool
-   */
-  public function setIsInfobotFaqDataStore($isInfobotFaqDataStore)
-  {
-    $this->isInfobotFaqDataStore = $isInfobotFaqDataStore;
-  }
-  /**
-   * @return bool
-   */
-  public function getIsInfobotFaqDataStore()
-  {
-    return $this->isInfobotFaqDataStore;
   }
   /**
    * @param string

@@ -31,12 +31,6 @@ class GoogleCloudDiscoveryengineV1betaControlBoostAction extends \Google\Model
    * @var string
    */
   public $filter;
-  /**
-   * @var float
-   */
-  public $fixedBoost;
-  protected $interpolationBoostSpecType = GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec::class;
-  protected $interpolationBoostSpecDataType = '';
 
   /**
    * @param float
@@ -79,34 +73,6 @@ class GoogleCloudDiscoveryengineV1betaControlBoostAction extends \Google\Model
   public function getFilter()
   {
     return $this->filter;
-  }
-  /**
-   * @param float
-   */
-  public function setFixedBoost($fixedBoost)
-  {
-    $this->fixedBoost = $fixedBoost;
-  }
-  /**
-   * @return float
-   */
-  public function getFixedBoost()
-  {
-    return $this->fixedBoost;
-  }
-  /**
-   * @param GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec
-   */
-  public function setInterpolationBoostSpec(GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec $interpolationBoostSpec)
-  {
-    $this->interpolationBoostSpec = $interpolationBoostSpec;
-  }
-  /**
-   * @return GoogleCloudDiscoveryengineV1betaControlBoostActionInterpolationBoostSpec
-   */
-  public function getInterpolationBoostSpec()
-  {
-    return $this->interpolationBoostSpec;
   }
 }
 

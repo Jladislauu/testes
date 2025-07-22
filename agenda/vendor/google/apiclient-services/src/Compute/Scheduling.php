@@ -29,10 +29,6 @@ class Scheduling extends \Google\Collection
    */
   public $availabilityDomain;
   /**
-   * @var int
-   */
-  public $hostErrorTimeoutSeconds;
-  /**
    * @var string
    */
   public $instanceTerminationAction;
@@ -96,20 +92,6 @@ class Scheduling extends \Google\Collection
   public function getAvailabilityDomain()
   {
     return $this->availabilityDomain;
-  }
-  /**
-   * @param int
-   */
-  public function setHostErrorTimeoutSeconds($hostErrorTimeoutSeconds)
-  {
-    $this->hostErrorTimeoutSeconds = $hostErrorTimeoutSeconds;
-  }
-  /**
-   * @return int
-   */
-  public function getHostErrorTimeoutSeconds()
-  {
-    return $this->hostErrorTimeoutSeconds;
   }
   /**
    * @param string

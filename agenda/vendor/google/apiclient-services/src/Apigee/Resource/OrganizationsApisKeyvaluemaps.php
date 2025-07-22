@@ -34,11 +34,7 @@ class OrganizationsApisKeyvaluemaps extends \Google\Service\Resource
    *
    * @param string $parent Required. Name of the environment in which to create
    * the key value map. Use the following structure in your request:
-   * `organizations/{org}/apis/{api}` If the API Proxy resource has the `space`
-   * attribute set, IAM permissions are checked against the Space resource path.
-   * To learn more, read the [Apigee Spaces
-   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
-   * administration/spaces/apigee-spaces-overview).
+   * `organizations/{org}/apis/{api}`
    * @param GoogleCloudApigeeV1KeyValueMap $postBody
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1KeyValueMap
@@ -55,11 +51,7 @@ class OrganizationsApisKeyvaluemaps extends \Google\Service\Resource
    *
    * @param string $name Required. Name of the key value map. Use the following
    * structure in your request:
-   * `organizations/{org}/apis/{api}/keyvaluemaps/{keyvaluemap}` If the API Proxy
-   * resource has the `space` attribute set, IAM permissions are checked against
-   * the Space resource path. To learn more, read the [Apigee Spaces
-   * Overview](https://cloud.google.com/apigee/docs/api-platform/system-
-   * administration/spaces/apigee-spaces-overview).
+   * `organizations/{org}/apis/{api}/keyvaluemaps/{keyvaluemap}`
    * @param array $optParams Optional parameters.
    * @return GoogleCloudApigeeV1KeyValueMap
    * @throws \Google\Service\Exception

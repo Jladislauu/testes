@@ -30,7 +30,7 @@ App.Http.Calendar = (function () {
      *
      * @return {*|jQuery}
      */
-    function saveAppointment(appointment, customer, recurrenceData, successCallback, errorCallback) {
+    function saveAppointment(appointment, customer, successCallback, errorCallback) {
         const url = App.Utils.Url.siteUrl('calendar/save_appointment');
 
         const data = {
@@ -40,10 +40,6 @@ App.Http.Calendar = (function () {
 
         if (customer) {
             data.customer_data = customer;
-        }
-
-        if (recurrenceData) {
-            data.recurrence_data = recurrenceData;
         }
 
         return $.post(url, data)
@@ -255,6 +251,5 @@ App.Http.Calendar = (function () {
         deleteWorkingPlanException,
         getCalendarAppointments,
         getCalendarAppointmentsForTableView,
-        deleteSeries,
     };
 })();

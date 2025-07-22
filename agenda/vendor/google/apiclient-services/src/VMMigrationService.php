@@ -96,11 +96,6 @@ class VMMigrationService extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'extraLocationTypes' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
                 'filter' => [
                   'location' => 'query',
                   'type' => 'string',
@@ -665,16 +660,6 @@ class VMMigrationService extends \Google\Service
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'extendMigration' => [
-              'path' => 'v1/{+migratingVm}:extendMigration',
-              'httpMethod' => 'POST',
-              'parameters' => [
-                'migratingVm' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,

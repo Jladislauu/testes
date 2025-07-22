@@ -34,7 +34,6 @@ App.Components.AppointmentsModal = (function () {
     const $customerNotes = $('#customer-notes');
     const $selectCustomer = $('#select-customer');
     const $saveAppointment = $('#save-appointment');
-    const $deleteSeries = $('#delete-series');
     const $appointmentId = $('#appointment-id');
     const $appointmentLocation = $('#appointment-location');
     const $appointmentStatus = $('#appointment-status');
@@ -52,18 +51,6 @@ App.Components.AppointmentsModal = (function () {
     const $customField3 = $('#custom-field-3');
     const $customField4 = $('#custom-field-4');
     const $customField5 = $('#custom-field-5');
-
-    // Recurrence Fields
-    const $enableRecurrence = $('#enable-recurrence');
-    const $recurrenceSettings = $('#recurrence-settings');
-    const $recurrenceType = $('#recurrence-type');
-    const $recurrenceInterval = $('#recurrence-interval');
-    const $recurrenceIntervalLabel = $('#recurrence-interval-label');
-    const $weeklySettings = $('#weekly-settings');
-    const $recurrenceEndOn = $('#recurrence-end-on');
-    const $recurrenceEndAfter = $('#recurrence-end-after');
-    const $recurrenceEndDate = $('#recurrence-end-date');
-    const $recurrenceOccurrences = $('#recurrence-occurrences');
 
     const moment = window.moment;
 
@@ -166,21 +153,7 @@ App.Components.AppointmentsModal = (function () {
             };
 
             // Save appointment data.
-            let recurrenceData = null;
-
-            if ($enableRecurrence.is(':checked')) {
-                recurrenceData = {
-                    recurrence_type: $recurrenceType.val(),
-                    separation_count: $recurrenceInterval.val(),
-                    days_of_week: $weeklySettings.find('input:checked').map(function() {
-                        return $(this).val();
-                    }).get().join(','),
-                    end_date: $recurrenceEndOn.is(':checked') ? $recurrenceEndDate.val() : null,
-                    max_occurrences: $recurrenceEndAfter.is(':checked') ? $recurrenceOccurrences.val() : null
-                };
-            }
-
-            App.Http.Calendar.saveAppointment(appointment, customer, recurrenceData, successCallback, errorCallback);
+            App.Http.Calendar.saveAppointment(appointment, customer, successCallback, errorCallback);
         });
 
         /**
@@ -460,38 +433,6 @@ App.Components.AppointmentsModal = (function () {
             $customField4.val('');
             $customField5.val('');
         });
-
-        // Show/hide the recurrence fieldset
-        $enableRecurrence.on('change', function() {
-            console.log('Recurrence checkbox clicked. Is checked:', $(this).is(':checked'));
-            $recurrenceSettings.toggle($(this).is(':checked'));
-        });
-
-        // Handle recurrence type change
-        $recurrenceType.on('change', function() {
-            const type = $(this).val();
-            if (type === 'weekly') {
-                $weeklySettings.fadeIn();
-                $recurrenceIntervalLabel.text(lang('weeks'));
-            } else if (type === 'monthly') {
-                $weeklySettings.fadeOut();
-                $recurrenceIntervalLabel.text(lang('months'));
-            } else { // daily
-                $weeklySettings.fadeOut();
-                $recurrenceIntervalLabel.text(lang('days'));
-            }
-        });
-
-        // Handle recurrence end type change
-        $('input[name="recurrence-end-type"]').on('change', function() {
-            if ($(this).val() === 'on') {
-                $recurrenceEndDate.prop('disabled', false);
-                $recurrenceOccurrences.prop('disabled', true);
-            } else { // after
-                $recurrenceEndDate.prop('disabled', true);
-                $recurrenceOccurrences.prop('disabled', false);
-            }
-        });
     }
 
     /**
@@ -503,7 +444,6 @@ App.Components.AppointmentsModal = (function () {
     function resetModal() {
         // Empty form fields.
         $appointmentsModal.find('input, textarea').val('');
-        $deleteSeries.hide();
         $appointmentsModal.find('.modal-message').addClass('.d-none');
 
         const defaultStatusValue = $appointmentStatus.find('option:first').val();
@@ -570,16 +510,6 @@ App.Components.AppointmentsModal = (function () {
 
         App.Utils.UI.initializeDateTimePicker($endDatetime);
         App.Utils.UI.setDateTimePickerValue($endDatetime, endDatetime);
-
-        // Reset recurrence fields
-        $enableRecurrence.prop('checked', false);
-        $recurrenceSettings.hide();
-        $recurrenceType.val('daily').trigger('change');
-        $recurrenceInterval.val(1);
-        $weeklySettings.find('input').prop('checked', false);
-        $recurrenceEndOn.prop('checked', true).trigger('change');
-        $recurrenceEndDate.val('');
-        $recurrenceOccurrences.val(10);
     }
 
     /**
@@ -643,39 +573,7 @@ App.Components.AppointmentsModal = (function () {
      * Initialize the module.
      */
     function initialize() {
-        console.log('AppointmentsModal: Initializing...');
         addEventListeners();
-        console.log('AppointmentsModal: Event listeners added.');
-        // Recurrence: show/hide delete series button on modal show
-        $appointmentsModal.on('show.bs.modal', () => {
-            const recurrenceId = $('#appointment-recurrence-id').val();
-            if (recurrenceId) {
-                $deleteSeries.show();
-            } else {
-                $deleteSeries.hide();
-            }
-        });
-        // Delete series button click handler
-        $deleteSeries.on('click', () => {
-            const recurrenceId = $('#appointment-recurrence-id').val();
-            if (!recurrenceId) {
-                return;
-            }
-            const reason = window.prompt(lang('delete_series_title'));
-            if (reason === null) {
-                return;
-            }
-            App.Http.Calendar.deleteSeries(recurrenceId, reason)
-                .done(() => {
-                    $appointmentsModal.modal('hide');
-                    $reloadAppointments.trigger('click');
-                })
-                .fail(() => {
-                    $appointmentsModal.find('.modal-message').text(lang('service_communication_error'))
-                        .addClass('alert-danger').removeClass('d-none');
-                    $appointmentsModal.find('.modal-body').scrollTop(0);
-                });
-        });
     }
 
     document.addEventListener('DOMContentLoaded', initialize);

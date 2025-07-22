@@ -20,10 +20,6 @@ namespace Google\Service\DiscoveryEngine;
 class GoogleCloudDiscoveryengineV1betaDataStore extends \Google\Collection
 {
   protected $collection_key = 'solutionTypes';
-  /**
-   * @var bool
-   */
-  public $aclEnabled;
   protected $advancedSiteSearchConfigType = GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig::class;
   protected $advancedSiteSearchConfigDataType = '';
   protected $billingEstimationType = GoogleCloudDiscoveryengineV1betaDataStoreBillingEstimation::class;
@@ -48,20 +44,10 @@ class GoogleCloudDiscoveryengineV1betaDataStore extends \Google\Collection
   public $displayName;
   protected $documentProcessingConfigType = GoogleCloudDiscoveryengineV1betaDocumentProcessingConfig::class;
   protected $documentProcessingConfigDataType = '';
-  protected $healthcareFhirConfigType = GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig::class;
-  protected $healthcareFhirConfigDataType = '';
-  /**
-   * @var string
-   */
-  public $identityMappingStore;
   /**
    * @var string
    */
   public $industryVertical;
-  /**
-   * @var bool
-   */
-  public $isInfobotFaqDataStore;
   /**
    * @var string
    */
@@ -85,20 +71,6 @@ class GoogleCloudDiscoveryengineV1betaDataStore extends \Google\Collection
   protected $workspaceConfigType = GoogleCloudDiscoveryengineV1betaWorkspaceConfig::class;
   protected $workspaceConfigDataType = '';
 
-  /**
-   * @param bool
-   */
-  public function setAclEnabled($aclEnabled)
-  {
-    $this->aclEnabled = $aclEnabled;
-  }
-  /**
-   * @return bool
-   */
-  public function getAclEnabled()
-  {
-    return $this->aclEnabled;
-  }
   /**
    * @param GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig
    */
@@ -212,34 +184,6 @@ class GoogleCloudDiscoveryengineV1betaDataStore extends \Google\Collection
     return $this->documentProcessingConfig;
   }
   /**
-   * @param GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig
-   */
-  public function setHealthcareFhirConfig(GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig $healthcareFhirConfig)
-  {
-    $this->healthcareFhirConfig = $healthcareFhirConfig;
-  }
-  /**
-   * @return GoogleCloudDiscoveryengineV1betaHealthcareFhirConfig
-   */
-  public function getHealthcareFhirConfig()
-  {
-    return $this->healthcareFhirConfig;
-  }
-  /**
-   * @param string
-   */
-  public function setIdentityMappingStore($identityMappingStore)
-  {
-    $this->identityMappingStore = $identityMappingStore;
-  }
-  /**
-   * @return string
-   */
-  public function getIdentityMappingStore()
-  {
-    return $this->identityMappingStore;
-  }
-  /**
    * @param string
    */
   public function setIndustryVertical($industryVertical)
@@ -252,20 +196,6 @@ class GoogleCloudDiscoveryengineV1betaDataStore extends \Google\Collection
   public function getIndustryVertical()
   {
     return $this->industryVertical;
-  }
-  /**
-   * @param bool
-   */
-  public function setIsInfobotFaqDataStore($isInfobotFaqDataStore)
-  {
-    $this->isInfobotFaqDataStore = $isInfobotFaqDataStore;
-  }
-  /**
-   * @return bool
-   */
-  public function getIsInfobotFaqDataStore()
-  {
-    return $this->isInfobotFaqDataStore;
   }
   /**
    * @param string

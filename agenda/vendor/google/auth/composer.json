@@ -3,10 +3,10 @@
   "type": "library",
   "description": "Google Auth Library for PHP",
   "keywords": ["google", "oauth2", "authentication"],
-  "homepage": "https://github.com/google/google-auth-library-php",
+  "homepage": "http://github.com/google/google-auth-library-php",
   "license": "Apache-2.0",
   "support": {
-    "docs": "https://cloud.google.com/php/docs/reference/auth/latest"
+    "docs": "https://googleapis.github.io/google-auth-library-php/main/"
   },
   "require": {
     "php": "^8.0",

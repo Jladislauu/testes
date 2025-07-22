@@ -51,6 +51,10 @@ class NetworkProfile extends \Google\Model
    * @var string
    */
   public $selfLinkWithId;
+  /**
+   * @var string
+   */
+  public $zone;
 
   /**
    * @param string
@@ -177,6 +181,20 @@ class NetworkProfile extends \Google\Model
   public function getSelfLinkWithId()
   {
     return $this->selfLinkWithId;
+  }
+  /**
+   * @param string
+   */
+  public function setZone($zone)
+  {
+    $this->zone = $zone;
+  }
+  /**
+   * @return string
+   */
+  public function getZone()
+  {
+    return $this->zone;
   }
 }
 

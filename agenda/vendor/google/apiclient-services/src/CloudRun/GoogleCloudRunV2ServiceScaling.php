@@ -26,10 +26,6 @@ class GoogleCloudRunV2ServiceScaling extends \Google\Model
   /**
    * @var int
    */
-  public $maxInstanceCount;
-  /**
-   * @var int
-   */
   public $minInstanceCount;
   /**
    * @var string
@@ -49,20 +45,6 @@ class GoogleCloudRunV2ServiceScaling extends \Google\Model
   public function getManualInstanceCount()
   {
     return $this->manualInstanceCount;
-  }
-  /**
-   * @param int
-   */
-  public function setMaxInstanceCount($maxInstanceCount)
-  {
-    $this->maxInstanceCount = $maxInstanceCount;
-  }
-  /**
-   * @return int
-   */
-  public function getMaxInstanceCount()
-  {
-    return $this->maxInstanceCount;
   }
   /**
    * @param int

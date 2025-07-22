@@ -40,15 +40,7 @@ class GoogleCloudIntegrationsV1alphaClientConfig extends \Google\Model
   /**
    * @var bool
    */
-  public $enableHttpCall;
-  /**
-   * @var bool
-   */
   public $enableInternalIp;
-  /**
-   * @var bool
-   */
-  public $enableManagedAiFeatures;
   /**
    * @var bool
    */
@@ -151,20 +143,6 @@ class GoogleCloudIntegrationsV1alphaClientConfig extends \Google\Model
   /**
    * @param bool
    */
-  public function setEnableHttpCall($enableHttpCall)
-  {
-    $this->enableHttpCall = $enableHttpCall;
-  }
-  /**
-   * @return bool
-   */
-  public function getEnableHttpCall()
-  {
-    return $this->enableHttpCall;
-  }
-  /**
-   * @param bool
-   */
   public function setEnableInternalIp($enableInternalIp)
   {
     $this->enableInternalIp = $enableInternalIp;
@@ -175,20 +153,6 @@ class GoogleCloudIntegrationsV1alphaClientConfig extends \Google\Model
   public function getEnableInternalIp()
   {
     return $this->enableInternalIp;
-  }
-  /**
-   * @param bool
-   */
-  public function setEnableManagedAiFeatures($enableManagedAiFeatures)
-  {
-    $this->enableManagedAiFeatures = $enableManagedAiFeatures;
-  }
-  /**
-   * @return bool
-   */
-  public function getEnableManagedAiFeatures()
-  {
-    return $this->enableManagedAiFeatures;
   }
   /**
    * @param bool

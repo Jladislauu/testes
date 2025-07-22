@@ -24,16 +24,8 @@ class GoogleFirestoreAdminV1Index extends \Google\Collection
    * @var string
    */
   public $apiScope;
-  /**
-   * @var string
-   */
-  public $density;
   protected $fieldsType = GoogleFirestoreAdminV1IndexField::class;
   protected $fieldsDataType = 'array';
-  /**
-   * @var bool
-   */
-  public $multikey;
   /**
    * @var string
    */
@@ -42,10 +34,6 @@ class GoogleFirestoreAdminV1Index extends \Google\Collection
    * @var string
    */
   public $queryScope;
-  /**
-   * @var int
-   */
-  public $shardCount;
   /**
    * @var string
    */
@@ -66,20 +54,6 @@ class GoogleFirestoreAdminV1Index extends \Google\Collection
     return $this->apiScope;
   }
   /**
-   * @param string
-   */
-  public function setDensity($density)
-  {
-    $this->density = $density;
-  }
-  /**
-   * @return string
-   */
-  public function getDensity()
-  {
-    return $this->density;
-  }
-  /**
    * @param GoogleFirestoreAdminV1IndexField[]
    */
   public function setFields($fields)
@@ -92,20 +66,6 @@ class GoogleFirestoreAdminV1Index extends \Google\Collection
   public function getFields()
   {
     return $this->fields;
-  }
-  /**
-   * @param bool
-   */
-  public function setMultikey($multikey)
-  {
-    $this->multikey = $multikey;
-  }
-  /**
-   * @return bool
-   */
-  public function getMultikey()
-  {
-    return $this->multikey;
   }
   /**
    * @param string
@@ -134,20 +94,6 @@ class GoogleFirestoreAdminV1Index extends \Google\Collection
   public function getQueryScope()
   {
     return $this->queryScope;
-  }
-  /**
-   * @param int
-   */
-  public function setShardCount($shardCount)
-  {
-    $this->shardCount = $shardCount;
-  }
-  /**
-   * @return int
-   */
-  public function getShardCount()
-  {
-    return $this->shardCount;
   }
   /**
    * @param string

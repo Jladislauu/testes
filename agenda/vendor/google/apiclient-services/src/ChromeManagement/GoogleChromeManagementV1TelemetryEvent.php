@@ -41,8 +41,6 @@ class GoogleChromeManagementV1TelemetryEvent extends \Google\Model
   public $name;
   protected $networkStateChangeEventType = GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent::class;
   protected $networkStateChangeEventDataType = '';
-  protected $osCrashEventType = GoogleChromeManagementV1TelemetryOsCrashEvent::class;
-  protected $osCrashEventDataType = '';
   /**
    * @var string
    */
@@ -181,20 +179,6 @@ class GoogleChromeManagementV1TelemetryEvent extends \Google\Model
   public function getNetworkStateChangeEvent()
   {
     return $this->networkStateChangeEvent;
-  }
-  /**
-   * @param GoogleChromeManagementV1TelemetryOsCrashEvent
-   */
-  public function setOsCrashEvent(GoogleChromeManagementV1TelemetryOsCrashEvent $osCrashEvent)
-  {
-    $this->osCrashEvent = $osCrashEvent;
-  }
-  /**
-   * @return GoogleChromeManagementV1TelemetryOsCrashEvent
-   */
-  public function getOsCrashEvent()
-  {
-    return $this->osCrashEvent;
   }
   /**
    * @param string

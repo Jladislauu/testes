@@ -74,8 +74,6 @@ class Node extends \Google\Collection
   public $name;
   protected $networkConfigType = NetworkConfig::class;
   protected $networkConfigDataType = '';
-  protected $networkConfigsType = NetworkConfig::class;
-  protected $networkConfigsDataType = 'array';
   protected $networkEndpointsType = NetworkEndpoint::class;
   protected $networkEndpointsDataType = 'array';
   /**
@@ -102,8 +100,6 @@ class Node extends \Google\Collection
    * @var string[]
    */
   public $tags;
-  protected $upcomingMaintenanceType = UpcomingMaintenance::class;
-  protected $upcomingMaintenanceDataType = '';
 
   /**
    * @param AcceleratorConfig
@@ -316,20 +312,6 @@ class Node extends \Google\Collection
     return $this->networkConfig;
   }
   /**
-   * @param NetworkConfig[]
-   */
-  public function setNetworkConfigs($networkConfigs)
-  {
-    $this->networkConfigs = $networkConfigs;
-  }
-  /**
-   * @return NetworkConfig[]
-   */
-  public function getNetworkConfigs()
-  {
-    return $this->networkConfigs;
-  }
-  /**
    * @param NetworkEndpoint[]
    */
   public function setNetworkEndpoints($networkEndpoints)
@@ -454,20 +436,6 @@ class Node extends \Google\Collection
   public function getTags()
   {
     return $this->tags;
-  }
-  /**
-   * @param UpcomingMaintenance
-   */
-  public function setUpcomingMaintenance(UpcomingMaintenance $upcomingMaintenance)
-  {
-    $this->upcomingMaintenance = $upcomingMaintenance;
-  }
-  /**
-   * @return UpcomingMaintenance
-   */
-  public function getUpcomingMaintenance()
-  {
-    return $this->upcomingMaintenance;
   }
 }
 

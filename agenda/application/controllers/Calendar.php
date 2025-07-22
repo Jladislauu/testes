@@ -76,10 +76,8 @@ class Calendar extends EA_Controller
         $this->load->model('services_model');
         $this->load->model('providers_model');
         $this->load->model('roles_model');
-        $this->load->model('appointment_recurrences_model');
 
         $this->load->library('accounts');
-        $this->load->library('recurrence_generator');
         $this->load->library('google_sync');
         $this->load->library('notifications');
         $this->load->library('synchronization');
@@ -231,7 +229,6 @@ class Calendar extends EA_Controller
             $customer_data = request('customer_data');
 
             $appointment_data = request('appointment_data');
-            $recurrence_data = request('recurrence_data');
 
             $this->check_event_permissions((int) $appointment_data['id_users_provider']);
 
@@ -283,63 +280,6 @@ class Calendar extends EA_Controller
                 $this->appointments_model->optional($appointment, $this->optional_appointment_fields);
 
                 $appointment['id'] = $this->appointments_model->save($appointment);
-
-                // Handle recurrence if data is provided
-                log_message('debug', 'Checking for recurrence data. Payload: ' . json_encode($recurrence_data));
-                if ($recurrence_data && !empty($recurrence_data['recurrence_type']) && $appointment['id']) {
-                    log_message('debug', 'Recurrence Data Found and is being processed: ' . json_encode($recurrence_data));
-                    $recurrence_id = $this->appointment_recurrences_model->save($recurrence_data);
-                    log_message('debug', 'Recurrence Rule Saved with ID: ' . $recurrence_id);
-
-                    $first_appointment = $this->appointments_model->find($appointment['id']);
-                    $first_appointment['id_recurrence'] = $recurrence_id;
-                    $this->appointments_model->save($first_appointment);
-
-                    $duration_seconds = strtotime($first_appointment['end_datetime']) - strtotime($first_appointment['start_datetime']);
-
-                    $dates = $this->recurrence_generator->generate_dates($recurrence_data, $first_appointment['start_datetime']);
-                    log_message('debug', 'Generated ' . count($dates) . ' dates for recurrence.');
-
-                    // Remove the first date, as it's already created
-                
-                    // Prepare sync context
-                    $service = $this->services_model->find($first_appointment['id_services']);
-                    $provider = $this->providers_model->find($first_appointment['id_users_provider']);
-                    $customer = $this->customers_model->find($first_appointment['id_users_customer']);
-                    $company_color = setting('company_color');
-                    $settings = [
-                        'company_name' => setting('company_name'),
-                        'company_link' => setting('company_link'),
-                        'company_email' => setting('company_email'),
-                        'company_color' => !empty($company_color) && $company_color != DEFAULT_COMPANY_COLOR
-                            ? $company_color
-                            : null,
-                        'date_format' => setting('date_format'),
-                        'time_format' => setting('time_format'),
-                    ];
-                
-                    foreach ($dates as $start_date) {
-                        $new_appointment_data = $first_appointment;
-                        unset($new_appointment_data['id']); // Create a new appointment
-                
-                        $new_appointment_data['start_datetime'] = $start_date->format('Y-m-d H:i:s');
-                
-                        $end_date = clone $start_date;
-                        $end_date->add(new DateInterval('PT' . $duration_seconds . 'S'));
-                        $new_appointment_data['end_datetime'] = $end_date->format('Y-m-d H:i:s');
-                
-                        // Save the new appointment occurrence and sync it
-                        $new_appointment_id = $this->appointments_model->save($new_appointment_data);
-                        $new_appointment = $this->appointments_model->find($new_appointment_id);
-                        $this->synchronization->sync_appointment_saved(
-                            $new_appointment,
-                            $service,
-                            $provider,
-                            $customer,
-                            $settings
-                        );
-                    }
-                }
             }
 
             if (empty($appointment['id'])) {
@@ -508,56 +448,6 @@ class Calendar extends EA_Controller
     /**
      * Delete an unavailability from database.
      */
-    /**
-     * Delete all appointments in a recurrence series.
-     *
-     * @return void
-     */
-    public function delete_recurrence(): void
-    {
-        try {
-            if (cannot('delete', PRIV_APPOINTMENTS)) {
-                throw new RuntimeException('You do not have the required permissions for this task.');
-            }
-            $recurrence_id = request('recurrence_id');
-            $cancellation_reason = (string) request('cancellation_reason');
-            if (empty($recurrence_id)) {
-                throw new InvalidArgumentException('No recurrence id provided.');
-            }
-            // Get all appointments in this recurrence series
-            $appointments = $this->appointments_model->get(['id_recurrence' => $recurrence_id]);
-            $company_color = setting('company_color');
-            $settings = [
-                'company_name' => setting('company_name'),
-                'company_email' => setting('company_email'),
-                'company_link' => setting('company_link'),
-                'company_color' => !empty($company_color) && $company_color != DEFAULT_COMPANY_COLOR ? $company_color : null,
-                'date_format' => setting('date_format'),
-                'time_format' => setting('time_format'),
-            ];
-            foreach ($appointments as $appointment) {
-                $provider = $this->providers_model->find($appointment['id_users_provider']);
-                $customer = $this->customers_model->find($appointment['id_users_customer']);
-                $service = $this->services_model->find($appointment['id_services']);
-                $this->notifications->notify_appointment_deleted(
-                    $appointment,
-                    $service,
-                    $provider,
-                    $customer,
-                    $settings,
-                    $cancellation_reason
-                );
-                $this->synchronization->sync_appointment_deleted($appointment, $provider);
-                $this->webhooks_client->trigger(WEBHOOK_APPOINTMENT_DELETE, $appointment);
-            }
-            // Delete recurrence rule and cascade-delete appointments
-            $this->appointment_recurrences_model->delete($recurrence_id);
-            json_response(['success' => true]);
-        } catch (Throwable $e) {
-            json_exception($e);
-        }
-    }
-
     public function delete_unavailability(): void
     {
         try {

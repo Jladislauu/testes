@@ -52,8 +52,6 @@ class ExternalAccountCredentials implements
     private ?string $serviceAccountImpersonationUrl;
     private ?string $workforcePoolUserProject;
     private ?string $projectId;
-    /** @var array<mixed> */
-    private ?array $lastImpersonatedAccessToken;
     private string $universeDomain;
 
     /**
@@ -272,10 +270,7 @@ class ExternalAccountCredentials implements
         $stsToken = $this->auth->fetchAuthToken($httpHandler, $headers);
 
         if (isset($this->serviceAccountImpersonationUrl)) {
-            return $this->lastImpersonatedAccessToken = $this->getImpersonatedAccessToken(
-                $stsToken['access_token'],
-                $httpHandler
-            );
+            return $this->getImpersonatedAccessToken($stsToken['access_token'], $httpHandler);
         }
 
         return $stsToken;
@@ -306,7 +301,7 @@ class ExternalAccountCredentials implements
 
     public function getLastReceivedToken()
     {
-        return $this->lastImpersonatedAccessToken ?? $this->auth->getLastReceivedToken();
+        return $this->auth->getLastReceivedToken();
     }
 
     /**

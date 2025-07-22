@@ -43,7 +43,6 @@ class Css extends \Google\Service
   public $accounts_cssProductInputs;
   public $accounts_cssProducts;
   public $accounts_labels;
-  public $accounts_quotas;
   public $rootUrlTemplate;
 
   /**
@@ -157,20 +156,6 @@ class Css extends \Google\Service
                   'type' => 'string',
                 ],
               ],
-            ],'patch' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
             ],
           ]
         ]
@@ -265,34 +250,6 @@ class Css extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->accounts_quotas = new Css\Resource\AccountsQuotas(
-        $this,
-        $this->serviceName,
-        'quotas',
-        [
-          'methods' => [
-            'list' => [
-              'path' => 'v1/{+parent}/quotas',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'parent' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'pageSize' => [
-                  'location' => 'query',
-                  'type' => 'integer',
-                ],
-                'pageToken' => [
-                  'location' => 'query',
-                  'type' => 'string',
                 ],
               ],
             ],

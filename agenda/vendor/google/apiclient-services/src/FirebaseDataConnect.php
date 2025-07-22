@@ -20,7 +20,7 @@ namespace Google\Service;
 use Google\Client;
 
 /**
- * Service definition for FirebaseDataConnect (v1).
+ * Service definition for FirebaseDataConnect (v1beta).
  *
  * <p>
  * Firebase Data Connect is a relational database service for mobile and web
@@ -62,7 +62,7 @@ class FirebaseDataConnect extends \Google\Service
     $this->rootUrlTemplate = $rootUrl ?: 'https://firebasedataconnect.UNIVERSE_DOMAIN/';
     $this->servicePath = '';
     $this->batchPath = 'batch';
-    $this->version = 'v1';
+    $this->version = 'v1beta';
     $this->serviceName = 'firebasedataconnect';
 
     $this->projects_locations = new FirebaseDataConnect\Resource\ProjectsLocations(
@@ -72,7 +72,7 @@ class FirebaseDataConnect extends \Google\Service
         [
           'methods' => [
             'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -82,18 +82,13 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+name}/locations',
+              'path' => 'v1beta/{+name}/locations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'extraLocationTypes' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -119,7 +114,7 @@ class FirebaseDataConnect extends \Google\Service
         [
           'methods' => [
             'cancel' => [
-              'path' => 'v1/{+name}:cancel',
+              'path' => 'v1beta/{+name}:cancel',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -129,7 +124,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -139,7 +134,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -149,7 +144,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+name}/operations',
+              'path' => 'v1beta/{+name}/operations',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -181,7 +176,7 @@ class FirebaseDataConnect extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/{+parent}/services',
+              'path' => 'v1beta/{+parent}/services',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -203,7 +198,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -233,7 +228,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'executeGraphql' => [
-              'path' => 'v1/{+name}:executeGraphql',
+              'path' => 'v1beta/{+name}:executeGraphql',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -243,7 +238,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'executeGraphqlRead' => [
-              'path' => 'v1/{+name}:executeGraphqlRead',
+              'path' => 'v1beta/{+name}:executeGraphqlRead',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -253,7 +248,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -263,7 +258,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/services',
+              'path' => 'v1beta/{+parent}/services',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -289,7 +284,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -325,7 +320,7 @@ class FirebaseDataConnect extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/{+parent}/connectors',
+              'path' => 'v1beta/{+parent}/connectors',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -347,7 +342,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -377,7 +372,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'executeMutation' => [
-              'path' => 'v1/{+name}:executeMutation',
+              'path' => 'v1beta/{+name}:executeMutation',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -387,7 +382,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'executeQuery' => [
-              'path' => 'v1/{+name}:executeQuery',
+              'path' => 'v1beta/{+name}:executeQuery',
               'httpMethod' => 'POST',
               'parameters' => [
                 'name' => [
@@ -397,7 +392,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -407,7 +402,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/connectors',
+              'path' => 'v1beta/{+parent}/connectors',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -433,7 +428,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [
@@ -469,7 +464,7 @@ class FirebaseDataConnect extends \Google\Service
         [
           'methods' => [
             'create' => [
-              'path' => 'v1/{+parent}/schemas',
+              'path' => 'v1beta/{+parent}/schemas',
               'httpMethod' => 'POST',
               'parameters' => [
                 'parent' => [
@@ -491,7 +486,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'delete' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'DELETE',
               'parameters' => [
                 'name' => [
@@ -521,7 +516,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'get' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'GET',
               'parameters' => [
                 'name' => [
@@ -531,7 +526,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'list' => [
-              'path' => 'v1/{+parent}/schemas',
+              'path' => 'v1beta/{+parent}/schemas',
               'httpMethod' => 'GET',
               'parameters' => [
                 'parent' => [
@@ -557,7 +552,7 @@ class FirebaseDataConnect extends \Google\Service
                 ],
               ],
             ],'patch' => [
-              'path' => 'v1/{+name}',
+              'path' => 'v1beta/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
                 'name' => [

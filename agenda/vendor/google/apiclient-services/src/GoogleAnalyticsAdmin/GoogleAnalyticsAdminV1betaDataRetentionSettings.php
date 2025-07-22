@@ -31,10 +31,6 @@ class GoogleAnalyticsAdminV1betaDataRetentionSettings extends \Google\Model
    * @var bool
    */
   public $resetUserDataOnNewActivity;
-  /**
-   * @var string
-   */
-  public $userDataRetention;
 
   /**
    * @param string
@@ -77,20 +73,6 @@ class GoogleAnalyticsAdminV1betaDataRetentionSettings extends \Google\Model
   public function getResetUserDataOnNewActivity()
   {
     return $this->resetUserDataOnNewActivity;
-  }
-  /**
-   * @param string
-   */
-  public function setUserDataRetention($userDataRetention)
-  {
-    $this->userDataRetention = $userDataRetention;
-  }
-  /**
-   * @return string
-   */
-  public function getUserDataRetention()
-  {
-    return $this->userDataRetention;
   }
 }
 

@@ -28,10 +28,6 @@ class PostgreSql extends \Google\Model
   /**
    * @var string
    */
-  public $schemaMigration;
-  /**
-   * @var string
-   */
   public $schemaValidation;
   /**
    * @var bool
@@ -65,20 +61,6 @@ class PostgreSql extends \Google\Model
   public function getDatabase()
   {
     return $this->database;
-  }
-  /**
-   * @param string
-   */
-  public function setSchemaMigration($schemaMigration)
-  {
-    $this->schemaMigration = $schemaMigration;
-  }
-  /**
-   * @return string
-   */
-  public function getSchemaMigration()
-  {
-    return $this->schemaMigration;
   }
   /**
    * @param string

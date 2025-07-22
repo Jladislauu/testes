@@ -61,10 +61,6 @@ class Interconnect extends \Google\Collection
    */
   public $interconnectAttachments;
   /**
-   * @var string[]
-   */
-  public $interconnectGroups;
-  /**
    * @var string
    */
   public $interconnectType;
@@ -292,20 +288,6 @@ class Interconnect extends \Google\Collection
   public function getInterconnectAttachments()
   {
     return $this->interconnectAttachments;
-  }
-  /**
-   * @param string[]
-   */
-  public function setInterconnectGroups($interconnectGroups)
-  {
-    $this->interconnectGroups = $interconnectGroups;
-  }
-  /**
-   * @return string[]
-   */
-  public function getInterconnectGroups()
-  {
-    return $this->interconnectGroups;
   }
   /**
    * @param string

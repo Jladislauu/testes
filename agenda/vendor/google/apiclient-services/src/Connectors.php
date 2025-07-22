@@ -147,10 +147,6 @@ class Connectors extends \Google\Service
                   'type' => 'string',
                   'required' => true,
                 ],
-                'view' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
               ],
             ],'list' => [
               'path' => 'v2/{+parent}/actions',
@@ -192,10 +188,6 @@ class Connectors extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'view' => [
-                  'location' => 'query',
-                  'type' => 'string',
                 ],
               ],
             ],'list' => [
@@ -296,11 +288,6 @@ class Connectors extends \Google\Service
                   'type' => 'string',
                 ],
                 'sortBy' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
-                ],
-                'sortOrder' => [
                   'location' => 'query',
                   'type' => 'string',
                   'repeated' => true,

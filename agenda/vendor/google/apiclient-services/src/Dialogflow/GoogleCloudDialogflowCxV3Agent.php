@@ -69,14 +69,6 @@ class GoogleCloudDialogflowCxV3Agent extends \Google\Collection
   protected $personalizationSettingsType = GoogleCloudDialogflowCxV3AgentPersonalizationSettings::class;
   protected $personalizationSettingsDataType = '';
   /**
-   * @var bool
-   */
-  public $satisfiesPzi;
-  /**
-   * @var bool
-   */
-  public $satisfiesPzs;
-  /**
    * @var string
    */
   public $securitySettings;
@@ -86,10 +78,6 @@ class GoogleCloudDialogflowCxV3Agent extends \Google\Collection
    * @var string
    */
   public $startFlow;
-  /**
-   * @var string
-   */
-  public $startPlaybook;
   /**
    * @var string[]
    */
@@ -312,34 +300,6 @@ class GoogleCloudDialogflowCxV3Agent extends \Google\Collection
     return $this->personalizationSettings;
   }
   /**
-   * @param bool
-   */
-  public function setSatisfiesPzi($satisfiesPzi)
-  {
-    $this->satisfiesPzi = $satisfiesPzi;
-  }
-  /**
-   * @return bool
-   */
-  public function getSatisfiesPzi()
-  {
-    return $this->satisfiesPzi;
-  }
-  /**
-   * @param bool
-   */
-  public function setSatisfiesPzs($satisfiesPzs)
-  {
-    $this->satisfiesPzs = $satisfiesPzs;
-  }
-  /**
-   * @return bool
-   */
-  public function getSatisfiesPzs()
-  {
-    return $this->satisfiesPzs;
-  }
-  /**
    * @param string
    */
   public function setSecuritySettings($securitySettings)
@@ -380,20 +340,6 @@ class GoogleCloudDialogflowCxV3Agent extends \Google\Collection
   public function getStartFlow()
   {
     return $this->startFlow;
-  }
-  /**
-   * @param string
-   */
-  public function setStartPlaybook($startPlaybook)
-  {
-    $this->startPlaybook = $startPlaybook;
-  }
-  /**
-   * @return string
-   */
-  public function getStartPlaybook()
-  {
-    return $this->startPlaybook;
   }
   /**
    * @param string[]

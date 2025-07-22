@@ -27,8 +27,6 @@ class GoogleCloudDiscoveryengineV1SearchResponseSearchResult extends \Google\Mod
    * @var string
    */
   public $id;
-  protected $modelScoresType = GoogleCloudDiscoveryengineV1DoubleList::class;
-  protected $modelScoresDataType = 'map';
 
   /**
    * @param GoogleCloudDiscoveryengineV1Chunk
@@ -71,20 +69,6 @@ class GoogleCloudDiscoveryengineV1SearchResponseSearchResult extends \Google\Mod
   public function getId()
   {
     return $this->id;
-  }
-  /**
-   * @param GoogleCloudDiscoveryengineV1DoubleList[]
-   */
-  public function setModelScores($modelScores)
-  {
-    $this->modelScores = $modelScores;
-  }
-  /**
-   * @return GoogleCloudDiscoveryengineV1DoubleList[]
-   */
-  public function getModelScores()
-  {
-    return $this->modelScores;
   }
 }
 

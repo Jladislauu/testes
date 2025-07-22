@@ -25,10 +25,6 @@ class ContactCenter extends \Google\Collection
   /**
    * @var bool
    */
-  public $advancedReportingEnabled;
-  /**
-   * @var bool
-   */
   public $ccaipManagedUsers;
   /**
    * @var string
@@ -98,20 +94,6 @@ class ContactCenter extends \Google\Collection
   public function getAdminUser()
   {
     return $this->adminUser;
-  }
-  /**
-   * @param bool
-   */
-  public function setAdvancedReportingEnabled($advancedReportingEnabled)
-  {
-    $this->advancedReportingEnabled = $advancedReportingEnabled;
-  }
-  /**
-   * @return bool
-   */
-  public function getAdvancedReportingEnabled()
-  {
-    return $this->advancedReportingEnabled;
   }
   /**
    * @param bool

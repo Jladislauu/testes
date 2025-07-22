@@ -20,10 +20,6 @@ namespace Google\Service\Translate;
 class TranslateTextGlossaryConfig extends \Google\Model
 {
   /**
-   * @var bool
-   */
-  public $contextualTranslationEnabled;
-  /**
    * @var string
    */
   public $glossary;
@@ -32,20 +28,6 @@ class TranslateTextGlossaryConfig extends \Google\Model
    */
   public $ignoreCase;
 
-  /**
-   * @param bool
-   */
-  public function setContextualTranslationEnabled($contextualTranslationEnabled)
-  {
-    $this->contextualTranslationEnabled = $contextualTranslationEnabled;
-  }
-  /**
-   * @return bool
-   */
-  public function getContextualTranslationEnabled()
-  {
-    return $this->contextualTranslationEnabled;
-  }
   /**
    * @param string
    */

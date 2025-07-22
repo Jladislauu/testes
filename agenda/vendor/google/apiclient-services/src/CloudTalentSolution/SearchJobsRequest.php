@@ -62,10 +62,6 @@ class SearchJobsRequest extends \Google\Collection
    * @var string
    */
   public $pageToken;
-  /**
-   * @var string
-   */
-  public $relevanceThreshold;
   protected $requestMetadataType = RequestMetadata::class;
   protected $requestMetadataDataType = '';
   /**
@@ -240,20 +236,6 @@ class SearchJobsRequest extends \Google\Collection
   public function getPageToken()
   {
     return $this->pageToken;
-  }
-  /**
-   * @param string
-   */
-  public function setRelevanceThreshold($relevanceThreshold)
-  {
-    $this->relevanceThreshold = $relevanceThreshold;
-  }
-  /**
-   * @return string
-   */
-  public function getRelevanceThreshold()
-  {
-    return $this->relevanceThreshold;
   }
   /**
    * @param RequestMetadata

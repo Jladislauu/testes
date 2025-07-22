@@ -212,8 +212,6 @@ abstract class Node implements \IteratorAggregate, \ArrayAccess, \Countable, \Js
      *
      * @param int   $offset
      * @param mixed $value
-     *
-     * @return void
      */
     #[\ReturnTypeWillChange]
     public function offsetSet($offset, $value)
@@ -235,8 +233,6 @@ abstract class Node implements \IteratorAggregate, \ArrayAccess, \Countable, \Js
      * This method just forwards the request to the inner iterator
      *
      * @param int $offset
-     *
-     * @return void
      */
     #[\ReturnTypeWillChange]
     public function offsetUnset($offset)

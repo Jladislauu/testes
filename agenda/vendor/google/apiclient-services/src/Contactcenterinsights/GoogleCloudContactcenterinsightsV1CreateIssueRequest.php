@@ -21,6 +21,7 @@ class GoogleCloudContactcenterinsightsV1CreateIssueRequest extends \Google\Model
 {
   protected $issueType = GoogleCloudContactcenterinsightsV1Issue::class;
   protected $issueDataType = '';
+  public $issue;
   /**
    * @var string
    */

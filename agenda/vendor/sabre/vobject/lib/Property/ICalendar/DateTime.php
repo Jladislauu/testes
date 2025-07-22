@@ -299,8 +299,6 @@ class DateTime extends Property
      *
      * @param string $name
      * @param mixed  $value
-     *
-     * @return void
      */
     #[\ReturnTypeWillChange]
     public function offsetSet($name, $value)

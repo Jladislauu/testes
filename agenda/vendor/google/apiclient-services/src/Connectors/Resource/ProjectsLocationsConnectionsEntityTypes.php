@@ -37,8 +37,6 @@ class ProjectsLocationsConnectionsEntityTypes extends \Google\Service\Resource
    * cts/{project}/locations/{location}/connections/{connection}/entityTypes/{enti
    * tyType}
    * @param array $optParams Optional parameters.
-   *
-   * @opt_param string view Specifies view for entity type schema.
    * @return EntityType
    * @throws \Google\Service\Exception
    */

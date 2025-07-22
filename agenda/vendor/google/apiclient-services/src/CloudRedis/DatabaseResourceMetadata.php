@@ -46,8 +46,6 @@ class DatabaseResourceMetadata extends \Google\Collection
    * @var string
    */
   public $expectedState;
-  protected $gcbdrConfigurationType = GCBDRConfiguration::class;
-  protected $gcbdrConfigurationDataType = '';
   protected $idType = DatabaseResourceId::class;
   protected $idDataType = '';
   /**
@@ -76,10 +74,6 @@ class DatabaseResourceMetadata extends \Google\Collection
    * @var string
    */
   public $resourceName;
-  /**
-   * @var string
-   */
-  public $suspensionReason;
   protected $tagsSetType = Tags::class;
   protected $tagsSetDataType = '';
   /**
@@ -216,20 +210,6 @@ class DatabaseResourceMetadata extends \Google\Collection
     return $this->expectedState;
   }
   /**
-   * @param GCBDRConfiguration
-   */
-  public function setGcbdrConfiguration(GCBDRConfiguration $gcbdrConfiguration)
-  {
-    $this->gcbdrConfiguration = $gcbdrConfiguration;
-  }
-  /**
-   * @return GCBDRConfiguration
-   */
-  public function getGcbdrConfiguration()
-  {
-    return $this->gcbdrConfiguration;
-  }
-  /**
    * @param DatabaseResourceId
    */
   public function setId(DatabaseResourceId $id)
@@ -354,20 +334,6 @@ class DatabaseResourceMetadata extends \Google\Collection
   public function getResourceName()
   {
     return $this->resourceName;
-  }
-  /**
-   * @param string
-   */
-  public function setSuspensionReason($suspensionReason)
-  {
-    $this->suspensionReason = $suspensionReason;
-  }
-  /**
-   * @return string
-   */
-  public function getSuspensionReason()
-  {
-    return $this->suspensionReason;
   }
   /**
    * @param Tags

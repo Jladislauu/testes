@@ -39,10 +39,14 @@ class WorkloadProfile extends \Google\Model
   public $refreshedTime;
   protected $sapWorkloadType = SapWorkload::class;
   protected $sapWorkloadDataType = '';
+  protected $sqlserverWorkloadType = SqlserverWorkload::class;
+  protected $sqlserverWorkloadDataType = '';
   /**
    * @var string
    */
   public $state;
+  protected $threeTierWorkloadType = ThreeTierWorkload::class;
+  protected $threeTierWorkloadDataType = '';
   /**
    * @var string
    */
@@ -147,6 +151,20 @@ class WorkloadProfile extends \Google\Model
     return $this->sapWorkload;
   }
   /**
+   * @param SqlserverWorkload
+   */
+  public function setSqlserverWorkload(SqlserverWorkload $sqlserverWorkload)
+  {
+    $this->sqlserverWorkload = $sqlserverWorkload;
+  }
+  /**
+   * @return SqlserverWorkload
+   */
+  public function getSqlserverWorkload()
+  {
+    return $this->sqlserverWorkload;
+  }
+  /**
    * @param string
    */
   public function setState($state)
@@ -159,6 +177,20 @@ class WorkloadProfile extends \Google\Model
   public function getState()
   {
     return $this->state;
+  }
+  /**
+   * @param ThreeTierWorkload
+   */
+  public function setThreeTierWorkload(ThreeTierWorkload $threeTierWorkload)
+  {
+    $this->threeTierWorkload = $threeTierWorkload;
+  }
+  /**
+   * @return ThreeTierWorkload
+   */
+  public function getThreeTierWorkload()
+  {
+    return $this->threeTierWorkload;
   }
   /**
    * @param string

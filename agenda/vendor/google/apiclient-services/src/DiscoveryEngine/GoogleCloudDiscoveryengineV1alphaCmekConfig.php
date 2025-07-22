@@ -17,9 +17,8 @@
 
 namespace Google\Service\DiscoveryEngine;
 
-class GoogleCloudDiscoveryengineV1alphaCmekConfig extends \Google\Collection
+class GoogleCloudDiscoveryengineV1alphaCmekConfig extends \Google\Model
 {
-  protected $collection_key = 'singleRegionKeys';
   /**
    * @var bool
    */
@@ -40,12 +39,6 @@ class GoogleCloudDiscoveryengineV1alphaCmekConfig extends \Google\Collection
    * @var string
    */
   public $name;
-  /**
-   * @var string
-   */
-  public $notebooklmState;
-  protected $singleRegionKeysType = GoogleCloudDiscoveryengineV1alphaSingleRegionKey::class;
-  protected $singleRegionKeysDataType = 'array';
   /**
    * @var string
    */
@@ -120,34 +113,6 @@ class GoogleCloudDiscoveryengineV1alphaCmekConfig extends \Google\Collection
   public function getName()
   {
     return $this->name;
-  }
-  /**
-   * @param string
-   */
-  public function setNotebooklmState($notebooklmState)
-  {
-    $this->notebooklmState = $notebooklmState;
-  }
-  /**
-   * @return string
-   */
-  public function getNotebooklmState()
-  {
-    return $this->notebooklmState;
-  }
-  /**
-   * @param GoogleCloudDiscoveryengineV1alphaSingleRegionKey[]
-   */
-  public function setSingleRegionKeys($singleRegionKeys)
-  {
-    $this->singleRegionKeys = $singleRegionKeys;
-  }
-  /**
-   * @return GoogleCloudDiscoveryengineV1alphaSingleRegionKey[]
-   */
-  public function getSingleRegionKeys()
-  {
-    return $this->singleRegionKeys;
   }
   /**
    * @param string

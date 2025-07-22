@@ -26,10 +26,6 @@ class GoogleCloudDocumentaiV1Document extends \Google\Collection
    * @var string
    */
   public $content;
-  /**
-   * @var string
-   */
-  public $docid;
   protected $documentLayoutType = GoogleCloudDocumentaiV1DocumentDocumentLayout::class;
   protected $documentLayoutDataType = '';
   protected $entitiesType = GoogleCloudDocumentaiV1DocumentEntity::class;
@@ -88,20 +84,6 @@ class GoogleCloudDocumentaiV1Document extends \Google\Collection
   public function getContent()
   {
     return $this->content;
-  }
-  /**
-   * @param string
-   */
-  public function setDocid($docid)
-  {
-    $this->docid = $docid;
-  }
-  /**
-   * @return string
-   */
-  public function getDocid()
-  {
-    return $this->docid;
   }
   /**
    * @param GoogleCloudDocumentaiV1DocumentDocumentLayout

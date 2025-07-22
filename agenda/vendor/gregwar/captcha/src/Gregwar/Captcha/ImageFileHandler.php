@@ -14,28 +14,24 @@ class ImageFileHandler
 {
     /**
      * Name of folder for captcha images
-     *
      * @var string
      */
     protected $imageFolder;
 
     /**
      * Absolute path to public web folder
-     *
      * @var string
      */
     protected $webPath;
 
     /**
      * Frequency of garbage collection in fractions of 1
-     *
      * @var int
      */
     protected $gcFreq;
 
     /**
      * Maximum age of images in minutes
-     *
      * @var int
      */
     protected $expiration;
@@ -57,7 +53,7 @@ class ImageFileHandler
     /**
      * Saves the provided image content as a file
      *
-     * @param resource|\GdImage $contents
+     * @param string $contents
      *
      * @return string
      */

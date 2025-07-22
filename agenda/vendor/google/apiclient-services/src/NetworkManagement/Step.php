@@ -39,8 +39,6 @@ class Step extends \Google\Model
    * @var string
    */
   public $description;
-  protected $directVpcEgressConnectionType = DirectVpcEgressConnectionInfo::class;
-  protected $directVpcEgressConnectionDataType = '';
   protected $dropType = DropInfo::class;
   protected $dropDataType = '';
   protected $endpointType = EndpointInfo::class;
@@ -77,8 +75,6 @@ class Step extends \Google\Model
   protected $redisInstanceDataType = '';
   protected $routeType = RouteInfo::class;
   protected $routeDataType = '';
-  protected $serverlessExternalConnectionType = ServerlessExternalConnectionInfo::class;
-  protected $serverlessExternalConnectionDataType = '';
   protected $serverlessNegType = ServerlessNegInfo::class;
   protected $serverlessNegDataType = '';
   /**
@@ -205,20 +201,6 @@ class Step extends \Google\Model
   public function getDescription()
   {
     return $this->description;
-  }
-  /**
-   * @param DirectVpcEgressConnectionInfo
-   */
-  public function setDirectVpcEgressConnection(DirectVpcEgressConnectionInfo $directVpcEgressConnection)
-  {
-    $this->directVpcEgressConnection = $directVpcEgressConnection;
-  }
-  /**
-   * @return DirectVpcEgressConnectionInfo
-   */
-  public function getDirectVpcEgressConnection()
-  {
-    return $this->directVpcEgressConnection;
   }
   /**
    * @param DropInfo
@@ -457,20 +439,6 @@ class Step extends \Google\Model
   public function getRoute()
   {
     return $this->route;
-  }
-  /**
-   * @param ServerlessExternalConnectionInfo
-   */
-  public function setServerlessExternalConnection(ServerlessExternalConnectionInfo $serverlessExternalConnection)
-  {
-    $this->serverlessExternalConnection = $serverlessExternalConnection;
-  }
-  /**
-   * @return ServerlessExternalConnectionInfo
-   */
-  public function getServerlessExternalConnection()
-  {
-    return $this->serverlessExternalConnection;
   }
   /**
    * @param ServerlessNegInfo

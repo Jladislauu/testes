@@ -43,7 +43,6 @@ class CloudKMS extends \Google\Service
       "https://www.googleapis.com/auth/cloudkms";
 
   public $folders;
-  public $organizations;
   public $projects;
   public $projects_locations;
   public $projects_locations_ekmConfig;
@@ -89,65 +88,7 @@ class CloudKMS extends \Google\Service
                   'required' => true,
                 ],
               ],
-            ],'getKajPolicyConfig' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
             ],'updateAutokeyConfig' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],'updateKajPolicyConfig' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                ],
-              ],
-            ],
-          ]
-        ]
-    );
-    $this->organizations = new CloudKMS\Resource\Organizations(
-        $this,
-        $this->serviceName,
-        'organizations',
-        [
-          'methods' => [
-            'getKajPolicyConfig' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'updateKajPolicyConfig' => [
               'path' => 'v1/{+name}',
               'httpMethod' => 'PATCH',
               'parameters' => [
@@ -171,17 +112,7 @@ class CloudKMS extends \Google\Service
         'projects',
         [
           'methods' => [
-            'getKajPolicyConfig' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'showEffectiveAutokeyConfig' => [
+            'showEffectiveAutokeyConfig' => [
               'path' => 'v1/{+parent}:showEffectiveAutokeyConfig',
               'httpMethod' => 'GET',
               'parameters' => [
@@ -189,40 +120,6 @@ class CloudKMS extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-              ],
-            ],'showEffectiveKeyAccessJustificationsEnrollmentConfig' => [
-              'path' => 'v1/{+project}:showEffectiveKeyAccessJustificationsEnrollmentConfig',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'project' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'showEffectiveKeyAccessJustificationsPolicyConfig' => [
-              'path' => 'v1/{+project}:showEffectiveKeyAccessJustificationsPolicyConfig',
-              'httpMethod' => 'GET',
-              'parameters' => [
-                'project' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-              ],
-            ],'updateKajPolicyConfig' => [
-              'path' => 'v1/{+name}',
-              'httpMethod' => 'PATCH',
-              'parameters' => [
-                'name' => [
-                  'location' => 'path',
-                  'type' => 'string',
-                  'required' => true,
-                ],
-                'updateMask' => [
-                  'location' => 'query',
-                  'type' => 'string',
                 ],
               ],
             ],
@@ -273,11 +170,6 @@ class CloudKMS extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'extraLocationTypes' => [
-                  'location' => 'query',
-                  'type' => 'string',
-                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -832,10 +724,6 @@ class CloudKMS extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
-                ],
-                'publicKeyFormat' => [
-                  'location' => 'query',
-                  'type' => 'string',
                 ],
               ],
             ],'import' => [

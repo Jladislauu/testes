@@ -45,8 +45,6 @@ class GoogleAppsCardV1TextInput extends \Google\Model
    * @var string
    */
   public $type;
-  protected $validationType = GoogleAppsCardV1Validation::class;
-  protected $validationDataType = '';
   /**
    * @var string
    */
@@ -163,20 +161,6 @@ class GoogleAppsCardV1TextInput extends \Google\Model
   public function getType()
   {
     return $this->type;
-  }
-  /**
-   * @param GoogleAppsCardV1Validation
-   */
-  public function setValidation(GoogleAppsCardV1Validation $validation)
-  {
-    $this->validation = $validation;
-  }
-  /**
-   * @return GoogleAppsCardV1Validation
-   */
-  public function getValidation()
-  {
-    return $this->validation;
   }
   /**
    * @param string

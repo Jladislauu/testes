@@ -23,8 +23,6 @@ class ResourceStatus extends \Google\Model
    * @var string
    */
   public $physicalHost;
-  protected $physicalHostTopologyType = ResourceStatusPhysicalHostTopology::class;
-  protected $physicalHostTopologyDataType = '';
   protected $schedulingType = ResourceStatusScheduling::class;
   protected $schedulingDataType = '';
   protected $upcomingMaintenanceType = UpcomingMaintenance::class;
@@ -43,20 +41,6 @@ class ResourceStatus extends \Google\Model
   public function getPhysicalHost()
   {
     return $this->physicalHost;
-  }
-  /**
-   * @param ResourceStatusPhysicalHostTopology
-   */
-  public function setPhysicalHostTopology(ResourceStatusPhysicalHostTopology $physicalHostTopology)
-  {
-    $this->physicalHostTopology = $physicalHostTopology;
-  }
-  /**
-   * @return ResourceStatusPhysicalHostTopology
-   */
-  public function getPhysicalHostTopology()
-  {
-    return $this->physicalHostTopology;
   }
   /**
    * @param ResourceStatusScheduling

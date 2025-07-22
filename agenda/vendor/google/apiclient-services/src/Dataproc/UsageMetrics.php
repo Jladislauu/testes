@@ -34,15 +34,7 @@ class UsageMetrics extends \Google\Model
   /**
    * @var string
    */
-  public $milliSlotSeconds;
-  /**
-   * @var string
-   */
   public $shuffleStorageGbSeconds;
-  /**
-   * @var string
-   */
-  public $updateTime;
 
   /**
    * @param string
@@ -89,20 +81,6 @@ class UsageMetrics extends \Google\Model
   /**
    * @param string
    */
-  public function setMilliSlotSeconds($milliSlotSeconds)
-  {
-    $this->milliSlotSeconds = $milliSlotSeconds;
-  }
-  /**
-   * @return string
-   */
-  public function getMilliSlotSeconds()
-  {
-    return $this->milliSlotSeconds;
-  }
-  /**
-   * @param string
-   */
   public function setShuffleStorageGbSeconds($shuffleStorageGbSeconds)
   {
     $this->shuffleStorageGbSeconds = $shuffleStorageGbSeconds;
@@ -113,20 +91,6 @@ class UsageMetrics extends \Google\Model
   public function getShuffleStorageGbSeconds()
   {
     return $this->shuffleStorageGbSeconds;
-  }
-  /**
-   * @param string
-   */
-  public function setUpdateTime($updateTime)
-  {
-    $this->updateTime = $updateTime;
-  }
-  /**
-   * @return string
-   */
-  public function getUpdateTime()
-  {
-    return $this->updateTime;
   }
 }
 

@@ -39,9 +39,9 @@ class Config
     // ------------------------------------------------------------------------
 
     const DB_HOST = 'localhost';
-    const DB_NAME = 'u292296724_teste';
-    const DB_USERNAME = 'u292296724_teste';
-    const DB_PASSWORD = 'hP2W,vRnX/&gh5;';
+    const DB_NAME = 'u292296724_testes';
+    const DB_USERNAME = 'u292296724_testes';
+    const DB_PASSWORD = '$ivr8XddwS9_+;E';
 
     // ------------------------------------------------------------------------
     // GOOGLE CALENDAR SYNC

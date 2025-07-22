@@ -35,13 +35,22 @@ class Recurrence_generator {
                     $current_date->add(new DateInterval("P{$interval}D"));
                     break;
                 case 'weekly':
-                    if (empty($rule['days_of_week'])) {
-                        // Simple weekly recurrence
-                        $current_date->add(new DateInterval("P{$interval}W"));
-                    } else {
-                        // Complex weekly recurrence, needs more logic to find the next valid day.
-                        // For now, we will handle simple cases. A more robust implementation would handle this.
-                        $current_date->add(new DateInterval("P{$interval}W"));
+                    $start_day_of_week = $current_date->format('N'); // 1 (for Monday) through 7 (for Sunday)
+                    $days_of_week = !empty($rule['days_of_week']) ? explode(',', $rule['days_of_week']) : [$start_day_of_week];
+                    
+                    // Find the next valid day
+                    $found_next_date = false;
+                    while(!$found_next_date) {
+                        $current_date->add(new DateInterval('P1D'));
+                        $current_day_of_week = $current_date->format('N');
+
+                        if (in_array($current_day_of_week, $days_of_week)) {
+                            // Check if it respects the interval
+                            $week_diff = floor($current_date->diff(end($occurrences))->days / 7);
+                            if ($week_diff >= $interval) {
+                                $found_next_date = true;
+                            }
+                        }
                     }
                     break;
                 case 'monthly':

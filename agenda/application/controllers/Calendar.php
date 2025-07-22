@@ -286,7 +286,9 @@ class Calendar extends EA_Controller
 
                 // Handle recurrence if data is provided
                 if (!empty($recurrence_data) && $appointment['id']) {
+                    log_message('debug', 'Recurrence Data Received: ' . json_encode($recurrence_data));
                     $recurrence_id = $this->appointment_recurrences_model->save($recurrence_data);
+                    log_message('debug', 'Recurrence Rule Saved with ID: ' . $recurrence_id);
 
                     $first_appointment = $this->appointments_model->find($appointment['id']);
                     $first_appointment['id_recurrence'] = $recurrence_id;
@@ -295,6 +297,7 @@ class Calendar extends EA_Controller
                     $duration_seconds = strtotime($first_appointment['end_datetime']) - strtotime($first_appointment['start_datetime']);
 
                     $dates = $this->recurrence_generator->generate_dates($recurrence_data, $first_appointment['start_datetime']);
+                    log_message('debug', 'Generated ' . count($dates) . ' dates for recurrence.');
 
                     // Remove the first date, as it's already created
                     array_shift($dates);

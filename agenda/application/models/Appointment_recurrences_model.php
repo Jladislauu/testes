@@ -50,7 +50,7 @@ class Appointment_recurrences_model extends EA_Model {
             throw new InvalidArgumentException('Invalid recurrence type provided.');
         }
 
-        if (isset($recurrence_rule['end_date']) && !validate_date($recurrence_rule['end_date'])) {
+        if (isset($recurrence_rule['end_date']) && !empty($recurrence_rule['end_date']) && !validate_date($recurrence_rule['end_date'])) {
             throw new InvalidArgumentException('Invalid end date for recurrence.');
         }
     }

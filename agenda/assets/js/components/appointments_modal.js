@@ -463,7 +463,7 @@ App.Components.AppointmentsModal = (function () {
         // Show/hide the recurrence fieldset
         $enableRecurrence.on('change', function() {
             console.log('Recurrence checkbox clicked. Is checked:', $(this).is(':checked'));
-            $recurrenceSettings.fadeToggle($(this).is(':checked'));
+            $recurrenceSettings.toggle($(this).is(':checked'));
         });
 
         // Handle recurrence type change

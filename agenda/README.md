@@ -47,6 +47,7 @@ The application is designed to be flexible enough so that it can handle any ente
 
 * Customers and appointments management.
 * Services and providers organization.
+* Recurring appointments with daily, weekly (custom weekdays), and monthly patterns.
 * Working plan and booking rules.
 * Google Calendar synchronization.
 * Email notifications system.
@@ -86,6 +87,17 @@ You will need to perform the following steps to install the application on your 
 * Make sure that the "storage" directory is writable.
 * Rename the "config-sample.php" file to "config.php" and update its contents based on your environment.
 * Open the browser on the Easy!Appointments URL and follow the installation guide.
+
+### Recurring Appointments
+
+The application supports recurring appointments with flexible rules:
+
+- Recurrence type: daily, weekly (select days), or monthly.
+- Separation count: number of intervals between occurrences.
+- End conditions: choose an end date or limit by maximum occurrences.
+- Weekly patterns: specify weekdays as comma-separated values (Mon, Tue, etc.).
+
+For implementation details, see [`Recurrence_generator::generate_dates()`](agenda/application/libraries/Recurrence_generator.php:20).
 
 That's it! You can now use Easy!Appointments at your will.
 

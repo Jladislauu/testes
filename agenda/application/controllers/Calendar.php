@@ -302,18 +302,43 @@ class Calendar extends EA_Controller
 
                     // Remove the first date, as it's already created
                     array_shift($dates);
-
+                
+                    // Prepare sync context
+                    $service = $this->services_model->find($first_appointment['id_services']);
+                    $provider = $this->providers_model->find($first_appointment['id_users_provider']);
+                    $customer = $this->customers_model->find($first_appointment['id_users_customer']);
+                    $company_color = setting('company_color');
+                    $settings = [
+                        'company_name' => setting('company_name'),
+                        'company_link' => setting('company_link'),
+                        'company_email' => setting('company_email'),
+                        'company_color' => !empty($company_color) && $company_color != DEFAULT_COMPANY_COLOR
+                            ? $company_color
+                            : null,
+                        'date_format' => setting('date_format'),
+                        'time_format' => setting('time_format'),
+                    ];
+                
                     foreach ($dates as $start_date) {
                         $new_appointment_data = $first_appointment;
                         unset($new_appointment_data['id']); // Create a new appointment
-                        
+                
                         $new_appointment_data['start_datetime'] = $start_date->format('Y-m-d H:i:s');
-                        
+                
                         $end_date = clone $start_date;
                         $end_date->add(new DateInterval('PT' . $duration_seconds . 'S'));
                         $new_appointment_data['end_datetime'] = $end_date->format('Y-m-d H:i:s');
-
-                        $this->appointments_model->save($new_appointment_data);
+                
+                        // Save the new appointment occurrence and sync it
+                        $new_appointment_id = $this->appointments_model->save($new_appointment_data);
+                        $new_appointment = $this->appointments_model->find($new_appointment_id);
+                        $this->synchronization->sync_appointment_saved(
+                            $new_appointment,
+                            $service,
+                            $provider,
+                            $customer,
+                            $settings
+                        );
                     }
                 }
             }

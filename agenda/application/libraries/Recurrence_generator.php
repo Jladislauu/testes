@@ -12,64 +12,120 @@ class Recurrence_generator {
     /**
      * Generates an array of DateTime objects based on a recurrence rule.
      *
+     * The $rule array supports the following keys:
+     * - 'recurrence_type': 'daily', 'weekly', or 'monthly'.
+     * - 'separation_count': integer interval count between occurrences (default 1).
+     * - 'days_of_week': comma-separated list of weekdays ('mon','tue',...) for weekly recurrences.
+     * - 'end_date': string 'Y-m-d' specifying the last possible occurrence date.
+     * - 'max_occurrences': integer limiting total occurrences.
+     *
      * @param array $rule The recurrence rule from the database.
      * @param string $start_datetime_string The start datetime of the first event in 'Y-m-d H:i:s' format.
      * @return DateTime[] Returns an array of DateTime objects for each occurrence.
-     * @throws Exception
+     * @throws Exception on invalid date intervals or parameters.
      */
     public function generate_dates(array $rule, string $start_datetime_string): array
     {
         $occurrences = [];
-        $current_date = new DateTime($start_datetime_string);
-        $end_date = isset($rule['end_date']) ? new DateTime($rule['end_date']) : null;
-        $max_occurrences = $rule['max_occurrences'] ?? null;
-        $interval = (int)($rule['separation_count'] ?? 1);
+        $startDate = new DateTime($start_datetime_string);
+        $time = $startDate->format('H:i:s');
+        $endDate = isset($rule['end_date']) && !empty($rule['end_date']) ? new DateTime($rule['end_date']) : null;
+        $maxOccurrences = isset($rule['max_occurrences']) ? (int)$rule['max_occurrences'] : null;
+        $intervalCount = isset($rule['separation_count']) ? (int)$rule['separation_count'] : 1;
 
-        // The first occurrence is the start date itself.
-        $occurrences[] = clone $current_date;
+        // Add first occurrence
+        $occurrences[] = clone $startDate;
 
-        while (true) {
-            // Move to the next potential date
-            switch ($rule['recurrence_type']) {
-                case 'daily':
-                    $current_date->add(new DateInterval("P{$interval}D"));
-                    break;
-                case 'weekly':
-                    // Default to the start date's day of the week if not provided.
-                    if (empty($rule['days_of_week'])) {
-                        $current_date->add(new DateInterval("P{$interval}W"));
-                    } else {
-                        // This is a simplified logic for finding the next day.
-                        // A full implementation would require more complex date calculations.
-                        // For now, we advance by the interval of weeks and assume the day is correct.
-                        // This part might need refinement for complex multi-day weekly recurrences.
-                        log_message('debug', 'Processing complex weekly recurrence (not fully implemented).');
-                        $current_date->add(new DateInterval("P{$interval}W"));
+        switch ($rule['recurrence_type']) {
+            case 'daily':
+                $current = clone $startDate;
+                while (true) {
+                    $current->add(new DateInterval("P{$intervalCount}D"));
+                    if ($endDate && $current > $endDate) {
+                        break;
                     }
-                    break;
-                case 'monthly':
-                    $current_date->add(new DateInterval("P{$interval}M"));
-                    break;
-                default:
-                    // Invalid type, stop generating
-                    return $occurrences;
-            }
-
-            // Check stop conditions
-            if ($end_date && $current_date > $end_date) {
-                break; // Stop if we passed the end date
-            }
-
-            if ($max_occurrences && count($occurrences) >= $max_occurrences) {
-                break; // Stop if we reached the max number of occurrences
-            }
-
-            $occurrences[] = clone $current_date;
-
-            // Safety break to prevent infinite loops in case of misconfiguration
-            if (count($occurrences) > 500) {
+                    if ($maxOccurrences !== null && count($occurrences) >= $maxOccurrences) {
+                        break;
+                    }
+                    $occurrences[] = clone $current;
+                    if (count($occurrences) > 500) {
+                        break;
+                    }
+                }
                 break;
-            }
+
+            case 'weekly':
+                // Determine days of week to include: numeric values 1 (Mon) to 7 (Sun)
+                if (!empty($rule['days_of_week'])) {
+                    $days = array_map('trim', explode(',', $rule['days_of_week']));
+                    $dayMap = ['mon'=>1,'tue'=>2,'wed'=>3,'thu'=>4,'fri'=>5,'sat'=>6,'sun'=>7];
+                    $weekDays = [];
+                    foreach ($days as $d) {
+                        $key = strtolower(substr($d, 0, 3));
+                        if (isset($dayMap[$key])) {
+                            $weekDays[] = $dayMap[$key];
+                        }
+                    }
+                    sort($weekDays);
+                } else {
+                    // default to the start day of week
+                    $weekDays = [(int)$startDate->format('N')];
+                }
+
+                $weekCount = 0;
+                while (true) {
+                    foreach ($weekDays as $dow) {
+                        $year = (int)$startDate->format('o');
+                        $week = (int)$startDate->format('W') + ($weekCount * $intervalCount);
+                        $date = new DateTime();
+                        try {
+                            $date->setISODate($year, $week, $dow);
+                        } catch (Exception $e) {
+                            continue;
+                        }
+                        list($h,$i,$s) = explode(':', $time);
+                        $date->setTime((int)$h, (int)$i, (int)$s);
+                        if ($date < $startDate) {
+                            continue;
+                        }
+                        if ($endDate && $date > $endDate) {
+                            continue;
+                        }
+                        if ($maxOccurrences !== null && count($occurrences) >= $maxOccurrences) {
+                            break 2;
+                        }
+                        $occurrences[] = clone $date;
+                        if (count($occurrences) > 500) {
+                            break 2;
+                        }
+                    }
+                    $weekCount++;
+                }
+                break;
+
+            case 'monthly':
+                $current = clone $startDate;
+                while (true) {
+                    $current->add(new DateInterval("P{$intervalCount}M"));
+                    // Retain original time
+                    list($h,$i,$s) = explode(':', $time);
+                    $current->setTime((int)$h, (int)$i, (int)$s);
+                    if ($endDate && $current > $endDate) {
+                        break;
+                    }
+                    if ($maxOccurrences !== null && count($occurrences) >= $maxOccurrences) {
+                        break;
+                    }
+                    $occurrences[] = clone $current;
+                    if (count($occurrences) > 500) {
+                        break;
+                    }
+                }
+                break;
+
+            default:
+                // invalid type, return only the first occurrence
+                break;
         }
 
         return $occurrences;

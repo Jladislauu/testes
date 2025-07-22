@@ -115,8 +115,11 @@ class Appointment_recurrences_model extends EA_Model {
      */
     public function delete(int $recurrence_id): void
     {
-        // Note: The foreign key constraint on ea_appointments is ON DELETE SET NULL,
-        // so related appointments will be unlinked, not deleted.
+        // Delete related appointments for this recurrence rule.
+        $this->db->where('id_recurrence', $recurrence_id);
+        $this->db->delete('appointments');
+
+        // Delete the recurrence rule record.
         $this->db->delete('appointment_recurrences', ['id' => $recurrence_id]);
     }
 }

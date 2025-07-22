@@ -47,6 +47,7 @@ class MigrationCenterAPI extends \Google\Service
   public $projects_locations_importJobs_importDataFiles;
   public $projects_locations_operations;
   public $projects_locations_preferenceSets;
+  public $projects_locations_relations;
   public $projects_locations_reportConfigs;
   public $projects_locations_reportConfigs_reports;
   public $projects_locations_sources;
@@ -104,6 +105,11 @@ class MigrationCenterAPI extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+                'extraLocationTypes' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                  'repeated' => true,
                 ],
                 'filter' => [
                   'location' => 'query',
@@ -228,6 +234,10 @@ class MigrationCenterAPI extends \Google\Service
                 'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
+                ],
+                'showHidden' => [
+                  'location' => 'query',
+                  'type' => 'boolean',
                 ],
                 'view' => [
                   'location' => 'query',
@@ -844,6 +854,52 @@ class MigrationCenterAPI extends \Google\Service
                   'type' => 'string',
                 ],
                 'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+              ],
+            ],
+          ]
+        ]
+    );
+    $this->projects_locations_relations = new MigrationCenterAPI\Resource\ProjectsLocationsRelations(
+        $this,
+        $this->serviceName,
+        'relations',
+        [
+          'methods' => [
+            'get' => [
+              'path' => 'v1/{+name}',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'name' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
+            ],'list' => [
+              'path' => 'v1/{+parent}/relations',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'parent' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'filter' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'orderBy' => [
+                  'location' => 'query',
+                  'type' => 'string',
+                ],
+                'pageSize' => [
+                  'location' => 'query',
+                  'type' => 'integer',
+                ],
+                'pageToken' => [
                   'location' => 'query',
                   'type' => 'string',
                 ],

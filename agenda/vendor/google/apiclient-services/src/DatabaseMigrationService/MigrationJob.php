@@ -84,6 +84,14 @@ class MigrationJob extends \Google\Model
   protected $reverseSshConnectivityType = ReverseSshConnectivity::class;
   protected $reverseSshConnectivityDataType = '';
   /**
+   * @var bool
+   */
+  public $satisfiesPzi;
+  /**
+   * @var bool
+   */
+  public $satisfiesPzs;
+  /**
    * @var string
    */
   public $source;
@@ -91,6 +99,8 @@ class MigrationJob extends \Google\Model
   protected $sourceDatabaseDataType = '';
   protected $sqlserverHomogeneousMigrationJobConfigType = SqlServerHomogeneousMigrationJobConfig::class;
   protected $sqlserverHomogeneousMigrationJobConfigDataType = '';
+  protected $sqlserverToPostgresConfigType = SqlServerToPostgresConfig::class;
+  protected $sqlserverToPostgresConfigDataType = '';
   /**
    * @var string
    */
@@ -389,6 +399,34 @@ class MigrationJob extends \Google\Model
     return $this->reverseSshConnectivity;
   }
   /**
+   * @param bool
+   */
+  public function setSatisfiesPzi($satisfiesPzi)
+  {
+    $this->satisfiesPzi = $satisfiesPzi;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzi()
+  {
+    return $this->satisfiesPzi;
+  }
+  /**
+   * @param bool
+   */
+  public function setSatisfiesPzs($satisfiesPzs)
+  {
+    $this->satisfiesPzs = $satisfiesPzs;
+  }
+  /**
+   * @return bool
+   */
+  public function getSatisfiesPzs()
+  {
+    return $this->satisfiesPzs;
+  }
+  /**
    * @param string
    */
   public function setSource($source)
@@ -429,6 +467,20 @@ class MigrationJob extends \Google\Model
   public function getSqlserverHomogeneousMigrationJobConfig()
   {
     return $this->sqlserverHomogeneousMigrationJobConfig;
+  }
+  /**
+   * @param SqlServerToPostgresConfig
+   */
+  public function setSqlserverToPostgresConfig(SqlServerToPostgresConfig $sqlserverToPostgresConfig)
+  {
+    $this->sqlserverToPostgresConfig = $sqlserverToPostgresConfig;
+  }
+  /**
+   * @return SqlServerToPostgresConfig
+   */
+  public function getSqlserverToPostgresConfig()
+  {
+    return $this->sqlserverToPostgresConfig;
   }
   /**
    * @param string

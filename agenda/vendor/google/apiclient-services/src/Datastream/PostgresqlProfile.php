@@ -38,6 +38,12 @@ class PostgresqlProfile extends \Google\Model
   /**
    * @var string
    */
+  public $secretManagerStoredPassword;
+  protected $sslConfigType = PostgresqlSslConfig::class;
+  protected $sslConfigDataType = '';
+  /**
+   * @var string
+   */
   public $username;
 
   /**
@@ -95,6 +101,34 @@ class PostgresqlProfile extends \Google\Model
   public function getPort()
   {
     return $this->port;
+  }
+  /**
+   * @param string
+   */
+  public function setSecretManagerStoredPassword($secretManagerStoredPassword)
+  {
+    $this->secretManagerStoredPassword = $secretManagerStoredPassword;
+  }
+  /**
+   * @return string
+   */
+  public function getSecretManagerStoredPassword()
+  {
+    return $this->secretManagerStoredPassword;
+  }
+  /**
+   * @param PostgresqlSslConfig
+   */
+  public function setSslConfig(PostgresqlSslConfig $sslConfig)
+  {
+    $this->sslConfig = $sslConfig;
+  }
+  /**
+   * @return PostgresqlSslConfig
+   */
+  public function getSslConfig()
+  {
+    return $this->sslConfig;
   }
   /**
    * @param string

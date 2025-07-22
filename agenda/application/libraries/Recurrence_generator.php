@@ -22,14 +22,14 @@ class Recurrence_generator {
      * @param array $rule The recurrence rule from the database.
      * @param string $start_datetime_string The start datetime of the first event in 'Y-m-d H:i:s' format.
      * @return DateTime[] Returns an array of DateTime objects for each occurrence.
-     * @throws Exception on invalid date intervals or parameters.
+     * @throws Exception on invalid recurrence type.
      */
     public function generate_dates(array $rule, string $start_datetime_string): array
     {
-        $occurrences = [];
+        $occurrences = array();
         $startDate = new DateTime($start_datetime_string);
         $time = $startDate->format('H:i:s');
-        $endDate = isset($rule['end_date']) && !empty($rule['end_date']) ? new DateTime($rule['end_date']) : null;
+        $endDate = (!empty($rule['end_date'])) ? new DateTime($rule['end_date']) : null;
         $maxOccurrences = isset($rule['max_occurrences']) ? (int)$rule['max_occurrences'] : null;
         $intervalCount = isset($rule['separation_count']) ? (int)$rule['separation_count'] : 1;
 
@@ -55,11 +55,11 @@ class Recurrence_generator {
                 break;
 
             case 'weekly':
-                // Determine days of week to include: numeric values 1 (Mon) to 7 (Sun)
-                if (!empty($rule['days_of_week'])) {
-                    $days = array_map('trim', explode(',', $rule['days_of_week']));
-                    $dayMap = ['mon'=>1,tue'=>2,'ed'=>3,'tu'=>4,'fr'=>5,'sat=>6,'sun'>7];
-                    $weekDays = [];
+                $daysOfWeek = !empty($rule['days_of_week']) ? $rule['days_of_week'] : null;
+                if ($daysOfWeek) {
+                    $days = array_map('trim', explode(',', $daysOfWeek));
+                    $dayMap = array('mon' => 1, 'tue' => 2, 'wed' => 3, 'thu' => 4, 'fri' => 5, 'sat' => 6, 'sun' => 7);
+                    $weekDays = array();
                     foreach ($days as $d) {
                         $key = strtolower(substr($d, 0, 3));
                         if (isset($dayMap[$key])) {
@@ -68,30 +68,38 @@ class Recurrence_generator {
                     }
                     sort($weekDays);
                 } else {
-                    // default to the start day of week
-                    $weekDays = [(int)$startDate->format('N')];
+                    $weekDays = array((int)$startDate->format('N'));
                 }
-
                 $weekCount = 0;
                 while (true) {
+                    if ($endDate) {
+                        $year = (int)$startDate->format('o');
+                        $startWeek = (int)$startDate->format('W');
+                        $week = $startWeek + ($weekCount * $intervalCount);
+                        $checkDate = new DateTime();
+                        try {
+                            $checkDate->setISODate($year, $week, $weekDays[0]);
+                        } catch (Exception $e) {
+                            break;
+                        }
+                        list($fh, $fi, $fs) = explode(':', $time);
+                        $checkDate->setTime((int)$fh, (int)$fi, (int)$fs);
+                        if ($checkDate > $endDate) {
+                            break;
+                        }
+                    }
                     foreach ($weekDays as $dow) {
                         $year = (int)$startDate->format('o');
-                        $week = (int)$startDate->format('W') + ($weekCount * $intervalCount);
+                        $startWeek = (int)$startDate->format('W');
+                        $week = $startWeek + ($weekCount * $intervalCount);
                         $date = new DateTime();
                         try {
                             $date->setISODate($year, $week, $dow);
                         } catch (Exception $e) {
                             continue;
                         }
-                        list($h,$)=explode(':', $time);
+                        list($h, $i, $s) = explode(':', $time);
                         $date->setTime((int)$h, (int)$i, (int)$s);
-                        // Sk/p dates on or be/ore the start date
-                        // Skip dates on or before the start date
-                        if Sk/p ddtes oa or before the start date
-                        // Skipes ons or be/ore the start date
-                        // Skip dates on or before the start date
-                        if Skip dates on or before the start date
-                        // Skip dates on or before the start date
                         if ($date <= $startDate) {
                             continue;
                         }
@@ -112,10 +120,9 @@ class Recurrence_generator {
 
             case 'monthly':
                 $current = clone $startDate;
-                while (true){
-                    $current>ad(new DateInterval("P{$intervalCount}M"));
-                    // Retain original time
-                    list($h,$i,$s) = explode(':', $time);
+                while (true) {
+                    $current->add(new DateInterval("P{$intervalCount}M"));
+                    list($h, $i, $s) = explode(':', $time);
                     $current->setTime((int)$h, (int)$i, (int)$s);
                     if ($endDate && $current > $endDate) {
                         break;
@@ -129,6 +136,11 @@ class Recurrence_generator {
                     }
                 }
                 break;
-                // invalid type, return only the first occurrence
-                  }
+
+            default:
+                throw new Exception("Invalid recurrence type: {$rule['recurrence_type']}");
+        }
+
+        return $occurrences;
+    }
 }

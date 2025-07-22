@@ -29,6 +29,10 @@ class GoogleCloudAiplatformV1GenerationConfig extends \Google\Collection
    */
   public $candidateCount;
   /**
+   * @var bool
+   */
+  public $enableAffectiveDialog;
+  /**
    * @var float
    */
   public $frequencyPenalty;
@@ -41,9 +45,17 @@ class GoogleCloudAiplatformV1GenerationConfig extends \Google\Collection
    */
   public $maxOutputTokens;
   /**
+   * @var string
+   */
+  public $mediaResolution;
+  /**
    * @var float
    */
   public $presencePenalty;
+  /**
+   * @var array
+   */
+  public $responseJsonSchema;
   /**
    * @var bool
    */
@@ -74,10 +86,8 @@ class GoogleCloudAiplatformV1GenerationConfig extends \Google\Collection
    * @var float
    */
   public $temperature;
-  /**
-   * @var string
-   */
-  public $tokenResolution;
+  protected $thinkingConfigType = GoogleCloudAiplatformV1GenerationConfigThinkingConfig::class;
+  protected $thinkingConfigDataType = '';
   /**
    * @var float
    */
@@ -114,6 +124,20 @@ class GoogleCloudAiplatformV1GenerationConfig extends \Google\Collection
   public function getCandidateCount()
   {
     return $this->candidateCount;
+  }
+  /**
+   * @param bool
+   */
+  public function setEnableAffectiveDialog($enableAffectiveDialog)
+  {
+    $this->enableAffectiveDialog = $enableAffectiveDialog;
+  }
+  /**
+   * @return bool
+   */
+  public function getEnableAffectiveDialog()
+  {
+    return $this->enableAffectiveDialog;
   }
   /**
    * @param float
@@ -158,6 +182,20 @@ class GoogleCloudAiplatformV1GenerationConfig extends \Google\Collection
     return $this->maxOutputTokens;
   }
   /**
+   * @param string
+   */
+  public function setMediaResolution($mediaResolution)
+  {
+    $this->mediaResolution = $mediaResolution;
+  }
+  /**
+   * @return string
+   */
+  public function getMediaResolution()
+  {
+    return $this->mediaResolution;
+  }
+  /**
    * @param float
    */
   public function setPresencePenalty($presencePenalty)
@@ -170,6 +208,20 @@ class GoogleCloudAiplatformV1GenerationConfig extends \Google\Collection
   public function getPresencePenalty()
   {
     return $this->presencePenalty;
+  }
+  /**
+   * @param array
+   */
+  public function setResponseJsonSchema($responseJsonSchema)
+  {
+    $this->responseJsonSchema = $responseJsonSchema;
+  }
+  /**
+   * @return array
+   */
+  public function getResponseJsonSchema()
+  {
+    return $this->responseJsonSchema;
   }
   /**
    * @param bool
@@ -298,18 +350,18 @@ class GoogleCloudAiplatformV1GenerationConfig extends \Google\Collection
     return $this->temperature;
   }
   /**
-   * @param string
+   * @param GoogleCloudAiplatformV1GenerationConfigThinkingConfig
    */
-  public function setTokenResolution($tokenResolution)
+  public function setThinkingConfig(GoogleCloudAiplatformV1GenerationConfigThinkingConfig $thinkingConfig)
   {
-    $this->tokenResolution = $tokenResolution;
+    $this->thinkingConfig = $thinkingConfig;
   }
   /**
-   * @return string
+   * @return GoogleCloudAiplatformV1GenerationConfigThinkingConfig
    */
-  public function getTokenResolution()
+  public function getThinkingConfig()
   {
-    return $this->tokenResolution;
+    return $this->thinkingConfig;
   }
   /**
    * @param float

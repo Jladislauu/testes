@@ -17,10 +17,12 @@
 
 namespace Google\Service\Aiplatform\Resource;
 
+use Google\Service\Aiplatform\GoogleApiHttpBody;
 use Google\Service\Aiplatform\GoogleCloudAiplatformV1ListReasoningEnginesResponse;
 use Google\Service\Aiplatform\GoogleCloudAiplatformV1QueryReasoningEngineRequest;
 use Google\Service\Aiplatform\GoogleCloudAiplatformV1QueryReasoningEngineResponse;
 use Google\Service\Aiplatform\GoogleCloudAiplatformV1ReasoningEngine;
+use Google\Service\Aiplatform\GoogleCloudAiplatformV1StreamQueryReasoningEngineRequest;
 use Google\Service\Aiplatform\GoogleLongrunningOperation;
 
 /**
@@ -56,6 +58,11 @@ class ProjectsLocationsReasoningEngines extends \Google\Service\Resource
    * deleted. Format:
    * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
    * @param array $optParams Optional parameters.
+   *
+   * @opt_param bool force Optional. If set to true, child resources of this
+   * reasoning engine will also be deleted. Otherwise, the request will fail with
+   * FAILED_PRECONDITION error when the reasoning engine has undeleted child
+   * resources.
    * @return GoogleLongrunningOperation
    * @throws \Google\Service\Exception
    */
@@ -106,6 +113,8 @@ class ProjectsLocationsReasoningEngines extends \Google\Service\Resource
    * Updates a reasoning engine. (reasoningEngines.patch)
    *
    * @param string $name Identifier. The resource name of the ReasoningEngine.
+   * Format:
+   * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
    * @param GoogleCloudAiplatformV1ReasoningEngine $postBody
    * @param array $optParams Optional parameters.
    *
@@ -136,6 +145,23 @@ class ProjectsLocationsReasoningEngines extends \Google\Service\Resource
     $params = ['name' => $name, 'postBody' => $postBody];
     $params = array_merge($params, $optParams);
     return $this->call('query', [$params], GoogleCloudAiplatformV1QueryReasoningEngineResponse::class);
+  }
+  /**
+   * Streams queries using a reasoning engine. (reasoningEngines.streamQuery)
+   *
+   * @param string $name Required. The name of the ReasoningEngine resource to
+   * use. Format:
+   * `projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}`
+   * @param GoogleCloudAiplatformV1StreamQueryReasoningEngineRequest $postBody
+   * @param array $optParams Optional parameters.
+   * @return GoogleApiHttpBody
+   * @throws \Google\Service\Exception
+   */
+  public function streamQuery($name, GoogleCloudAiplatformV1StreamQueryReasoningEngineRequest $postBody, $optParams = [])
+  {
+    $params = ['name' => $name, 'postBody' => $postBody];
+    $params = array_merge($params, $optParams);
+    return $this->call('streamQuery', [$params], GoogleApiHttpBody::class);
   }
 }
 

@@ -27,13 +27,19 @@ use Google\Client;
  *
  * <p>
  * For more information about this service, see the API
- * <a href="https://developers.google.com/classroom/" target="_blank">Documentation</a>
+ * <a href="https://developers.google.com/workspace/classroom/" target="_blank">Documentation</a>
  * </p>
  *
  * @author Google, Inc.
  */
 class Classroom extends \Google\Service
 {
+  /** See and update its own attachments to posts in Google Classroom. */
+  const CLASSROOM_ADDONS_STUDENT =
+      "https://www.googleapis.com/auth/classroom.addons.student";
+  /** See, create, and update its own attachments to posts in classes you teach in Google Classroom. */
+  const CLASSROOM_ADDONS_TEACHER =
+      "https://www.googleapis.com/auth/classroom.addons.teacher";
   /** View and manage announcements in Google Classroom. */
   const CLASSROOM_ANNOUNCEMENTS =
       "https://www.googleapis.com/auth/classroom.announcements";
@@ -172,6 +178,16 @@ class Classroom extends \Google\Service
                   'required' => true,
                 ],
               ],
+            ],'getGradingPeriodSettings' => [
+              'path' => 'v1/courses/{courseId}/gradingPeriodSettings',
+              'httpMethod' => 'GET',
+              'parameters' => [
+                'courseId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+              ],
             ],'list' => [
               'path' => 'v1/courses',
               'httpMethod' => 'GET',
@@ -220,6 +236,20 @@ class Classroom extends \Google\Service
                   'location' => 'path',
                   'type' => 'string',
                   'required' => true,
+                ],
+              ],
+            ],'updateGradingPeriodSettings' => [
+              'path' => 'v1/courses/{courseId}/gradingPeriodSettings',
+              'httpMethod' => 'PATCH',
+              'parameters' => [
+                'courseId' => [
+                  'location' => 'path',
+                  'type' => 'string',
+                  'required' => true,
+                ],
+                'updateMask' => [
+                  'location' => 'query',
+                  'type' => 'string',
                 ],
               ],
             ],

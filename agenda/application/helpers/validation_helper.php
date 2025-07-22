@@ -24,3 +24,17 @@ function validate_datetime(string $value): bool
 
     return (bool) $date_time;
 }
+
+/**
+ * Validate a date value.
+ *
+ * @param string $value Validation value.
+ *
+ * @return bool Returns the validation result.
+ */
+function validate_date(string $value): bool
+{
+    $date = DateTime::createFromFormat('Y-m-d', $value);
+
+    return $date && $date->format('Y-m-d') === $value;
+}

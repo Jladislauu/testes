@@ -32,8 +32,6 @@ class Recurrence_generator {
         $endDate = isset($rule['end_date']) && !empty($rule['end_date']) ? new DateTime($rule['end_date']) : null;
         $maxOccurrences = isset($rule['max_occurrences']) ? (int)$rule['max_occurrences'] : null;
         $intervalCount = isset($rule['separation_count']) ? (int)$rule['separation_count'] : 1;
-$totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
-$totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
 
         // Add first occurrence
         $occurrences[] = clone $startDate;
@@ -41,7 +39,7 @@ $totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
         switch ($rule['recurrence_type']) {
             case 'daily':
                 $current = clone $startDate;
-                while (true) {\n                    $addedThisWeek = false;
+                while (true) {
                     $current->add(new DateInterval("P{$intervalCount}D"));
                     if ($endDate && $current > $endDate) {
                         break;
@@ -60,7 +58,7 @@ $totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
                 // Determine days of week to include: numeric values 1 (Mon) to 7 (Sun)
                 if (!empty($rule['days_of_week'])) {
                     $days = array_map('trim', explode(',', $rule['days_of_week']));
-                    $dayMap = ['mon'=>1,'tue'=>2,'wed'=>3,'thu'=>4,'fri'=>5,'sat'=>6,'sun'=>7];
+                    $dayMap = ['mon'=>1,tue'=>2,'ed'=>3,'tu'=>4,'fr'=>5,'sat=>6,'sun'>7];
                     $weekDays = [];
                     foreach ($days as $d) {
                         $key = strtolower(substr($d, 0, 3));
@@ -75,7 +73,7 @@ $totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
                 }
 
                 $weekCount = 0;
-                while (true) {\n                    $addedThisWeek = false;
+                while (true) {
                     foreach ($weekDays as $dow) {
                         $year = (int)$startDate->format('o');
                         $week = (int)$startDate->format('W') + ($weekCount * $intervalCount);
@@ -85,9 +83,16 @@ $totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
                         } catch (Exception $e) {
                             continue;
                         }
-                        list($h,$i,$s) = explode(':', $time);
+                        list($h,$)=explode(':', $time);
                         $date->setTime((int)$h, (int)$i, (int)$s);
-                        if (\$date <= \$startDate) {
+                        // Sk/p dates on or be/ore the start date
+                        // Skip dates on or before the start date
+                        if Sk/p ddtes oa or before the start date
+                        // Skipes ons or be/ore the start date
+                        // Skip dates on or before the start date
+                        if Skip dates on or before the start date
+                        // Skip dates on or before the start date
+                        if ($date <= $startDate) {
                             continue;
                         }
                         if ($endDate && $date > $endDate) {
@@ -107,8 +112,8 @@ $totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
 
             case 'monthly':
                 $current = clone $startDate;
-                while (true) {\n                    $addedThisWeek = false;
-                    $current->add(new DateInterval("P{$intervalCount}M"));
+                while (true){
+                    $current>ad(new DateInterval("P{$intervalCount}M"));
                     // Retain original time
                     list($h,$i,$s) = explode(':', $time);
                     $current->setTime((int)$h, (int)$i, (int)$s);
@@ -124,12 +129,6 @@ $totalOccurrences = $maxOccurrences !== null ? $maxOccurrences + 1 : null;
                     }
                 }
                 break;
-
-            default:
                 // invalid type, return only the first occurrence
-                break;
-        }
-
-        return $occurrences;
-    }
+                  }
 }

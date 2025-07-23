@@ -16,7 +16,7 @@
  *
  * @package Models
  */
-class Appointments_model extends EA_Model
+class Appointments_model extends EA_Model 
 {
     /**
      * @var array
